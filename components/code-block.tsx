@@ -32,7 +32,7 @@ export async function CodeBlock({
       <div
         data-code-block-wrapper=""
         className={cn(
-          "mt-4 overflow-hidden rounded-lg border border-border bg-card",
+          "mt-4 overflow-hidden rounded-lg border border-border bg-background",
           wrapperClassName,
         )}
       >
@@ -49,7 +49,7 @@ export async function CodeBlock({
         </div>
         <figure data-rehype-pretty-code-figure="">
           <div
-            className={cn(className, "mx-2 mb-2 rounded-md bg-background shadow-none")}
+            className={cn(className, "bg-background shadow-none")}
             dangerouslySetInnerHTML={{ __html: highlightedCode }}
           />
         </figure>
