@@ -11,7 +11,6 @@ type DocsNavPage = {
 
 type DocsShellProps = {
   children: ReactNode;
-  introductionPages: DocsNavPage[];
   componentPages: DocsNavPage[];
   logoPages: DocsNavPage[];
   scrollBarsPages: DocsNavPage[];
@@ -19,16 +18,14 @@ type DocsShellProps = {
 
 export function DocsShell({
   children,
-  introductionPages,
   componentPages,
   logoPages,
   scrollBarsPages,
 }: DocsShellProps) {
   return (
-    <div className="flex h-dvh overflow-hidden bg-neutral-50 p-2 dark:bg-neutral-900">
+    <div className="flex h-dvh overflow-hidden bg-background text-foreground">
       <ThemeSync />
       <DocsSidebar
-        introductionPages={introductionPages}
         componentPages={componentPages}
         logoPages={logoPages}
         scrollBarsPages={scrollBarsPages}
@@ -48,7 +45,7 @@ export function DocsShell({
           </Link>
         }
       />
-      <div className="min-w-0 flex-1 overflow-hidden rounded border border-border bg-background text-foreground">
+      <div className="min-w-0 flex-1 overflow-hidden border-border md:border-l">
         <div className="h-full min-w-0 overflow-y-auto">{children}</div>
       </div>
     </div>

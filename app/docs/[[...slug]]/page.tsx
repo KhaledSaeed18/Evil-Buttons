@@ -54,5 +54,18 @@ export async function generateMetadata({
 }
 
 function getDocsPage(slug?: string[]) {
-  return source.getPage(slug && slug.length > 0 ? slug : ["introduction"]);
+  if (slug && slug.length > 0) {
+    return source.getPage(slug);
+  }
+
+  const defaultPage = source
+    .getPages()
+    .filter(
+      (page) =>
+        !page.url.startsWith("/docs/logos") &&
+        !page.url.startsWith("/docs/scroll-bars"),
+    )
+    .sort((a, b) => a.url.localeCompare(b.url))[0];
+
+  return defaultPage ?? source.getPages().sort((a, b) => a.url.localeCompare(b.url))[0] ?? null;
 }

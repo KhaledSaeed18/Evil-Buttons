@@ -18,7 +18,6 @@ type DocsNavPage = {
 };
 
 type DocsSidebarProps = {
-  introductionPages: DocsNavPage[];
   componentPages: DocsNavPage[];
   logoPages: DocsNavPage[];
   scrollBarsPages: DocsNavPage[];
@@ -26,17 +25,17 @@ type DocsSidebarProps = {
 };
 
 function isPageActive(pathname: string, url: string) {
-  return (
-    pathname === url || (pathname === "/docs" && url === "/docs/introduction")
-  );
+  return pathname === url;
 }
 
 function DocsNavGroup({
   title,
   pages,
+  defaultPageUrl,
 }: {
   title: string;
   pages: DocsNavPage[];
+  defaultPageUrl?: string;
 }) {
   const pathname = usePathname();
 
@@ -54,10 +53,16 @@ function DocsNavGroup({
           <Link
             key={page.url}
             href={page.url}
-            aria-current={isPageActive(pathname, page.url) ? "page" : undefined}
+            aria-current={
+              isPageActive(pathname, page.url) ||
+              (pathname === "/docs" && page.url === defaultPageUrl)
+                ? "page"
+                : undefined
+            }
             className={cn(
               "block rounded px-2 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-              isPageActive(pathname, page.url)
+              isPageActive(pathname, page.url) ||
+                (pathname === "/docs" && page.url === defaultPageUrl)
                 ? "bg-muted text-foreground"
                 : "text-muted-foreground hover:text-foreground",
             )}
@@ -71,7 +76,6 @@ function DocsNavGroup({
 }
 
 export function DocsSidebar({
-  introductionPages,
   componentPages,
   logoPages,
   scrollBarsPages,
@@ -79,6 +83,10 @@ export function DocsSidebar({
 }: DocsSidebarProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const defaultPageUrl =
+    componentPages[0]?.url ??
+    scrollBarsPages[0]?.url ??
+    logoPages[0]?.url;
 
   useEffect(() => {
     const rafId = window.requestAnimationFrame(() => {
@@ -137,10 +145,21 @@ export function DocsSidebar({
               Sponsor
             </a>
           </div>
-          <DocsNavGroup title="Introduction" pages={introductionPages} />
-          <DocsNavGroup title="Buttons" pages={componentPages} />
-          <DocsNavGroup title="Scroll Bars" pages={scrollBarsPages} />
-          <DocsNavGroup title="Logos" pages={logoPages} />
+          <DocsNavGroup
+            title="Buttons"
+            pages={componentPages}
+            defaultPageUrl={defaultPageUrl}
+          />
+          <DocsNavGroup
+            title="Scroll Bars"
+            pages={scrollBarsPages}
+            defaultPageUrl={defaultPageUrl}
+          />
+          <DocsNavGroup
+            title="Logos"
+            pages={logoPages}
+            defaultPageUrl={defaultPageUrl}
+          />
         </div>
       </aside>
       {open ? (
