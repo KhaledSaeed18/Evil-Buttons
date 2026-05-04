@@ -32,13 +32,13 @@ export async function CodeBlock({
       <div
         data-code-block-wrapper=""
         className={cn(
-          "dark:bg-primary-foreground rounded-[10px] bg-[#F5F5F5] p-1",
+          "mt-4 overflow-hidden rounded-lg border border-border bg-card",
           wrapperClassName,
         )}
       >
-        <div className="flex h-7 justify-between px-1">
+        <div className="flex items-center justify-between px-4 pt-3 pb-2">
           <figcaption
-            className="text-muted-foreground dark:text-muted-foreground/80 -mt-1 flex items-center gap-1.5 text-xs [&_svg]:size-3.5"
+            className="flex items-center gap-1.5 text-xs text-muted-foreground [&_svg]:size-3.5"
             data-language={language}
             data-rehype-pretty-code-title=""
           >
@@ -49,7 +49,7 @@ export async function CodeBlock({
         </div>
         <figure data-rehype-pretty-code-figure="">
           <div
-            className={cn(className, "rounded-md border shadow-none")}
+            className={cn(className, "mx-2 mb-2 rounded-md bg-background shadow-none")}
             dangerouslySetInnerHTML={{ __html: highlightedCode }}
           />
         </figure>

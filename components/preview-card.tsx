@@ -12,14 +12,14 @@ export function PreviewCard({
   children,
 }: PreviewCardProps) {
   return (
-    <div className="p-1 overflow-hidden rounded-md bg-neutral-100/60 dark:bg-neutral-900/60">
-      <div className="flex items-center justify-between py-1 px-2">
-        <p className="text-xs font-medium capitalize text-muted-foreground font-mono">
+    <div className="mt-4 overflow-hidden rounded-lg border border-border bg-card">
+      <div className="flex items-center justify-between px-4 pt-3 pb-2">
+        <p className="font-mono text-xs font-medium capitalize text-muted-foreground">
           {title}
         </p>
-        <p className="text-xs text-muted-foreground font-mono">{note}</p>
+        <p className="font-mono text-xs text-muted-foreground">{note}</p>
       </div>
-      <div className="flex items-center justify-center min-h-112 rounded border-border border bg-background">
+      <div className="mx-2 mb-2 flex min-h-112 items-center justify-center rounded-md bg-background p-8">
         {children}
       </div>
     </div>

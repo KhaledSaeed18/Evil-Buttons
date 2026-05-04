@@ -1,5 +1,6 @@
 "use client";
 
+import { CheckIcon, CopyIcon } from "@phosphor-icons/react";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -12,6 +13,7 @@ type CopyButtonProps = {
 export default function CopyButton({ code, className, withBlurBg }: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
   const resetTimerRef = useRef<number | null>(null);
+  const Icon = copied ? CheckIcon : CopyIcon;
 
   useEffect(() => {
     return () => {
@@ -40,13 +42,15 @@ export default function CopyButton({ code, className, withBlurBg }: CopyButtonPr
       type="button"
       onClick={onCopy}
       className={cn(
-        "rounded px-2 py-1 text-xs font-medium text-muted-foreground transition hover:text-foreground",
-        withBlurBg && "bg-background/80 backdrop-blur",
+        "inline-flex size-8 items-center justify-center rounded-lg text-muted-foreground transition hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        copied && "text-foreground",
+        withBlurBg && "bg-background/80 shadow-sm backdrop-blur",
         className,
       )}
-      aria-label="Copy code"
+      aria-label={copied ? "Copied" : "Copy code"}
+      title={copied ? "Copied" : "Copy code"}
     >
-      {copied ? "Copied" : "Copy"}
+      <Icon size={15} weight={copied ? "bold" : "regular"} />
     </button>
   );
 }

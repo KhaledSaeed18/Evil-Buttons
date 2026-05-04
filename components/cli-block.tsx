@@ -12,35 +12,30 @@ const packageCommands: Record<PackageManager, string> = {
   pnpm: "pnpm dlx shadcn@latest add",
 };
 
-const managers: PackageManager[] = ["npm", "yarn", "bun", "pnpm"];
+const managers: PackageManager[] = ["pnpm", "npm", "yarn", "bun"];
 
 const managerMeta: Record<
   PackageManager,
   {
     icon: typeof NpmIcon;
     activeTextClassName: string;
-    activeIndicatorClassName: string;
   }
 > = {
   npm: {
     icon: NpmIcon,
     activeTextClassName: "text-[#C3292F]",
-    activeIndicatorClassName: "bg-[#C3292F]",
   },
   yarn: {
     icon: YarnIcon,
     activeTextClassName: "text-[#3592BD]",
-    activeIndicatorClassName: "bg-[#3592BD]",
   },
   bun: {
     icon: BunIcon,
     activeTextClassName: "text-foreground",
-    activeIndicatorClassName: "bg-foreground",
   },
   pnpm: {
     icon: PnpmIcon,
     activeTextClassName: "text-[#FAAF18]",
-    activeIndicatorClassName: "bg-[#FAAF18]",
   },
 };
 
@@ -49,12 +44,11 @@ export function CliBlock({ commands }: { commands: string[] }) {
   const value = `${packageCommands[packageManager]} ${commands.join(" ")}`.trim();
 
   return (
-    <div className="group mt-2 flex flex-col rounded-[8px] bg-[#F5F5F5] p-1 dark:bg-neutral-900/60">
-      <div className="flex flex-row items-center justify-between gap-2 pr-1 pl-2">
-        <div className="flex items-center gap-0.5">
+    <div className="group mt-4 overflow-hidden rounded-lg border border-border bg-card">
+      <div className="flex flex-row items-center justify-between gap-2 px-3 pt-2.5 pb-2">
+        <div className="flex min-w-0 items-center gap-1 overflow-x-auto">
           {managers.map((manager) => {
-            const { icon: Icon, activeIndicatorClassName, activeTextClassName } =
-              managerMeta[manager];
+            const { icon: Icon, activeTextClassName } = managerMeta[manager];
 
             return (
               <button
@@ -62,26 +56,19 @@ export function CliBlock({ commands }: { commands: string[] }) {
                 type="button"
                 onClick={() => setConfig({ packageManager: manager })}
                 className={cn(
-                  "relative flex h-8 items-center gap-2 px-2 text-xs font-medium capitalize text-muted-foreground transition hover:text-foreground",
+                  "flex h-8 shrink-0 items-center gap-2 px-2.5 text-xs font-semibold text-muted-foreground transition hover:text-foreground",
                   manager === packageManager && activeTextClassName,
                 )}
               >
-                <span
-                  className={cn(
-                    "absolute inset-x-1 bottom-0 h-0.5 rounded-full bg-transparent transition-colors",
-                    manager === packageManager && activeIndicatorClassName,
-                  )}
-                  aria-hidden="true"
-                />
                 <Icon className="size-3" />
                 <span>{manager}</span>
               </button>
             );
           })}
         </div>
-        <CopyButton className="-mt-0.5" code={value} />
+        <CopyButton className="shrink-0" code={value} />
       </div>
-      <div className="rounded-[5px] border bg-background p-3 text-[13px] text-muted-foreground">
+      <div className="mx-2 mb-2 rounded-md bg-background px-4 py-4 text-[13px] text-foreground">
         <pre className="overflow-x-auto">
           <code className="font-mono">{value}</code>
         </pre>

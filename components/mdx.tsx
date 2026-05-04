@@ -82,21 +82,29 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
       />
     ),
     table: ({ className, ...props }: ComponentPropsWithoutRef<"table">) => (
-      <div className="mt-6 overflow-x-auto rounded-xl border border-border">
-        <table className={cn("w-full border-collapse text-left text-sm", className)} {...props} />
+      <div className="mt-4 overflow-hidden rounded-lg border border-border bg-card p-2">
+        <div className="overflow-x-auto rounded-md bg-background">
+          <table
+            className={cn("w-full border-collapse text-left text-sm", className)}
+            {...props}
+          />
+        </div>
       </div>
     ),
     th: ({ className, ...props }: ComponentPropsWithoutRef<"th">) => (
       <th
         className={cn(
-          "border-b border-border bg-muted/60 px-4 py-3 font-medium text-foreground",
+          "px-4 py-3 font-medium text-foreground",
           className,
         )}
         {...props}
       />
     ),
     td: ({ className, ...props }: ComponentPropsWithoutRef<"td">) => (
-      <td className={cn("border-t border-border px-4 py-3 text-muted-foreground", className)} {...props} />
+      <td
+        className={cn("border-t border-border px-4 py-3 text-muted-foreground", className)}
+        {...props}
+      />
     ),
     hr: ({ className, ...props }: ComponentPropsWithoutRef<"hr">) => (
       <hr className={cn("my-10 border-border", className)} {...props} />
@@ -111,11 +119,11 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
           return (
             <div
               data-code-block-wrapper=""
-              className="dark:bg-primary-foreground rounded-[10px] bg-[#F5F5F5] p-1"
+              className="mt-4 overflow-hidden rounded-lg border border-border bg-card"
             >
-              <div className="flex h-7 items-center justify-between px-1">
+              <div className="flex items-center justify-between px-4 pt-3 pb-2">
                 <figcaption
-                  className="text-muted-foreground dark:text-muted-foreground/80 -mt-1 flex items-center gap-1.5 text-xs [&_svg]:size-3.5"
+                  className="flex items-center gap-1.5 text-xs text-muted-foreground [&_svg]:size-3.5"
                   data-language={language}
                   data-rehype-pretty-code-title=""
                 >
@@ -125,7 +133,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
                 <CopyButton code={code} />
               </div>
               <figure data-rehype-pretty-code-figure="">
-                <div className="rounded-md border shadow-none">
+                <div className="mx-2 mb-2 rounded-md bg-background shadow-none">
                   <pre className={cn("overflow-x-auto bg-transparent p-0 text-sm", className)} {...props}>
                     {children}
                   </pre>

@@ -100,7 +100,7 @@ export function DocsSidebar({
     <>
       <aside
         className={cn(
-          "fixed inset-y-2 left-2 z-20 w-64 shrink-0 overflow-y-auto rounded border border-border bg-background p-2 shadow-xl transition-transform duration-200 ease-out md:static md:inset-auto md:z-auto md:h-full md:translate-x-0 md:border-0 md:bg-transparent md:p-0 md:pr-2 md:shadow-none",
+          "fixed inset-y-2 left-2 z-[2147483647] w-64 shrink-0 overflow-y-auto rounded border border-border bg-background p-2 shadow-xl transition-transform duration-200 ease-out md:static md:inset-auto md:z-auto md:h-full md:translate-x-0 md:border-0 md:bg-transparent md:p-2 md:pr-3 md:shadow-none",
           open ? "translate-x-0" : "translate-x-[-110%] md:translate-x-0",
         )}
       >
@@ -165,17 +165,20 @@ export function DocsSidebar({
       {open ? (
         <button
           type="button"
-          className="fixed inset-0 z-10 bg-black/30 md:hidden"
+          className="fixed inset-0 z-[2147483646] bg-black/30 md:hidden"
           onClick={() => setOpen(false)}
           aria-label="Close sidebar"
         />
       ) : null}
       <div
-        className={cn("fixed top-4 left-4 z-30 md:hidden", open && "hidden")}
+        className={cn(
+          "fixed top-4 left-4 z-[2147483645] md:hidden",
+          open && "hidden",
+        )}
       >
         <button
           type="button"
-          className="inline-flex size-8 items-center justify-center rounded border border-border bg-background text-muted-foreground shadow-sm transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="inline-flex size-8 items-center justify-center rounded border border-border bg-background text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           onClick={() => setOpen((value) => !value)}
           aria-expanded={open}
           aria-label="Open menu"
