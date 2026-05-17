@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cloud-blocks",
+  "type": "registry:ui",
+  "title": "CloudBlocksIcon",
+  "description": "A compact pixel-style cloud icon for weather UI and soft utility surfaces.",
+  "files": [
+    {
+      "path": "components/evil-buttons/icons/cloud-blocks.tsx",
+      "type": "registry:ui",
+      "target": "components/evil-buttons/icons/cloud-blocks.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport default function CloudBlocksIcon({ className }: { className?: string }) {\n  return (\n    <svg\n      viewBox=\"0 0 256 256\"\n      fill=\"currentColor\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      stroke=\"currentColor\"\n      strokeWidth=\"0.25\"\n      className={cn(\"size-7\", className)}\n      aria-label=\"cloud-blocks\"\n    >\n      <rect x=\"56\" y=\"136\" width=\"18\" height=\"18\" rx=\"1\" />\n      <rect x=\"74\" y=\"118\" width=\"18\" height=\"18\" rx=\"1\" />\n      <rect x=\"92\" y=\"100\" width=\"18\" height=\"18\" rx=\"1\" />\n      <rect x=\"110\" y=\"82\" width=\"18\" height=\"18\" rx=\"1\" />\n      <rect x=\"128\" y=\"82\" width=\"18\" height=\"18\" rx=\"1\" />\n      <rect x=\"146\" y=\"100\" width=\"18\" height=\"18\" rx=\"1\" />\n      <rect x=\"164\" y=\"100\" width=\"18\" height=\"18\" rx=\"1\" />\n      <rect x=\"182\" y=\"118\" width=\"18\" height=\"18\" rx=\"1\" />\n      <rect x=\"182\" y=\"136\" width=\"18\" height=\"18\" rx=\"1\" />\n      <rect x=\"164\" y=\"154\" width=\"18\" height=\"18\" rx=\"1\" />\n      <rect x=\"146\" y=\"154\" width=\"18\" height=\"18\" rx=\"1\" />\n      <rect x=\"128\" y=\"154\" width=\"18\" height=\"18\" rx=\"1\" />\n      <rect x=\"110\" y=\"154\" width=\"18\" height=\"18\" rx=\"1\" />\n      <rect x=\"92\" y=\"154\" width=\"18\" height=\"18\" rx=\"1\" />\n      <rect x=\"74\" y=\"154\" width=\"18\" height=\"18\" rx=\"1\" />\n    </svg>\n  );\n}\n"
+    }
+  ],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ]
+}

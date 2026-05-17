@@ -16,6 +16,10 @@ import ShadcnLogo from "./evil-buttons/logo/shadcn";
 import MoviePassButton from "./evil-buttons/movie-pass";
 import ShinyButton from "./evil-buttons/shiny-button";
 import GridButton from "./evil-buttons/grid-button";
+import SunDimIcon from "./evil-buttons/icons/sun-dim";
+import MoonIcon from "./evil-buttons/icons/moon";
+import SparkBurstIcon from "./evil-buttons/icons/spark-burst";
+import CloudBlocksIcon from "./evil-buttons/icons/cloud-blocks";
 
 type CmdProps = {
   children: ReactNode;
@@ -92,6 +96,10 @@ export function getCustomMDXComponents(): MDXComponents {
     ScrollBarsVerticalPreview: ScrollBarsVerticalPreview,
     EvilButton: ClickPowerUp,
     GridButton,
+    SunDimIcon,
+    MoonIcon,
+    SparkBurstIcon,
+    CloudBlocksIcon,
     Link,
   };
 }

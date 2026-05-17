@@ -62,6 +62,7 @@ function getDocsPage(slug?: string[]) {
     .getPages()
     .filter(
       (page) =>
+        !page.url.startsWith("/docs/icons") &&
         !page.url.startsWith("/docs/logos") &&
         !page.url.startsWith("/docs/scroll-bars"),
     )

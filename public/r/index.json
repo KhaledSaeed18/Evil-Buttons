@@ -92,6 +92,42 @@
       "files": [
         "components/evil-buttons/grid-button.tsx"
       ]
+    },
+    {
+      "name": "sun-dim",
+      "type": "registry:ui",
+      "title": "SunDimIcon",
+      "description": "A chunky low-res sun icon with square rays for theme toggles and retro UI.",
+      "files": [
+        "components/evil-buttons/icons/sun-dim.tsx"
+      ]
+    },
+    {
+      "name": "moon",
+      "type": "registry:ui",
+      "title": "MoonIcon",
+      "description": "A chunky moon icon with a bold block silhouette for theme toggles.",
+      "files": [
+        "components/evil-buttons/icons/moon.tsx"
+      ]
+    },
+    {
+      "name": "spark-burst",
+      "type": "registry:ui",
+      "title": "SparkBurstIcon",
+      "description": "A sharp chunky spark icon for badges, highlights, and decorative accents.",
+      "files": [
+        "components/evil-buttons/icons/spark-burst.tsx"
+      ]
+    },
+    {
+      "name": "cloud-blocks",
+      "type": "registry:ui",
+      "title": "CloudBlocksIcon",
+      "description": "A compact pixel-style cloud icon for weather UI and soft utility surfaces.",
+      "files": [
+        "components/evil-buttons/icons/cloud-blocks.tsx"
+      ]
     }
   ]
 }

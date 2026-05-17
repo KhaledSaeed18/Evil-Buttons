@@ -12,6 +12,7 @@ type DocsNavPage = {
 type DocsShellProps = {
   children: ReactNode;
   componentPages: DocsNavPage[];
+  iconPages: DocsNavPage[];
   logoPages: DocsNavPage[];
   scrollBarsPages: DocsNavPage[];
 };
@@ -19,6 +20,7 @@ type DocsShellProps = {
 export function DocsShell({
   children,
   componentPages,
+  iconPages,
   logoPages,
   scrollBarsPages,
 }: DocsShellProps) {
@@ -27,6 +29,7 @@ export function DocsShell({
       <ThemeSync />
       <DocsSidebar
         componentPages={componentPages}
+        iconPages={iconPages}
         logoPages={logoPages}
         scrollBarsPages={scrollBarsPages}
         brand={
