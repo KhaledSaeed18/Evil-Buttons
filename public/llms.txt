@@ -1,0 +1,25 @@
+# Evil Buttons
+
+> A shadcn/ui registry of animated React components built with Motion — buttons, icons, logos, and scroll bars with live docs and CLI install.
+
+## Documentation
+
+- [Component docs](https://evilbuttons.radiumcoders.com/docs): Live previews, install commands, and usage for every registry item
+- [Registry index](https://evilbuttons.radiumcoders.com/r/index.json): Machine-readable shadcn registry manifest
+
+## Install
+
+```bash
+npx shadcn@latest add @evilbuttons/<component-name>
+```
+
+Example components: `click-powerup`, `shiny-button`, `sticky`, `movie-pass`, `minimal`, `grid-button`, `scroll-bars`, `sun-dim`, `moon`, `spark-burst`, `cloud-blocks`, and logo variants (`vercel`, `shadcn`, `tanstack`).
+
+## Source
+
+- [GitHub repository](https://github.com/radiumcoders/evil-buttons)
+- [Built by Radium Coders](https://radiumcoders.com)
+
+## Tech
+
+Next.js, React, TypeScript, Tailwind CSS, Motion, Fumadocs, shadcn/ui registry format.

@@ -2,7 +2,14 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getMDXComponents } from "@/components/mdx";
 import { PageToc } from "@/components/page-toc";
+import { JsonLd } from "@/components/seo/json-ld";
 import { source } from "@/lib/source";
+import {
+  createBreadcrumbJsonLd,
+  createDocsPageMetadata,
+  createTechArticleJsonLd,
+  getDocsBreadcrumbs,
+} from "@/lib/seo";
 
 type DocsPageProps = {
   params: Promise<{
@@ -17,9 +24,20 @@ export default async function DocsPage({ params }: DocsPageProps) {
   if (!page) notFound();
 
   const MDX = page.data.body;
+  const breadcrumbs = getDocsBreadcrumbs(page.url, page.data.title);
 
   return (
     <div className="relative mx-auto w-full max-w-6xl px-6 pt-16 pb-8 md:py-8 xl:pr-64">
+      <JsonLd
+        data={[
+          createTechArticleJsonLd({
+            title: page.data.title,
+            description: page.data.description,
+            path: page.url,
+          }),
+          createBreadcrumbJsonLd(breadcrumbs),
+        ]}
+      />
       <article className="docs-content mx-auto min-w-0 max-w-3xl">
         <MDX components={getMDXComponents()} />
       </article>
@@ -47,10 +65,11 @@ export async function generateMetadata({
     return {};
   }
 
-  return {
+  return createDocsPageMetadata({
     title: page.data.title,
     description: page.data.description,
-  };
+    path: page.url,
+  });
 }
 
 function getDocsPage(slug?: string[]) {

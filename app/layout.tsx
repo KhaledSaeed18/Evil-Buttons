@@ -1,7 +1,13 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
+import { JsonLd } from "@/components/seo/json-ld";
 import { cn } from "@/lib/utils";
+import {
+  createOrganizationJsonLd,
+  createSoftwareApplicationJsonLd,
+  createWebSiteJsonLd,
+  rootMetadata,
+} from "@/lib/seo";
 import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -16,13 +22,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Evil Buttons",
-  description: "Custom docs playground powered by Fumadocs MDX.",
-  icons: {
-    icon: "/favicon.svg",
-  },
-};
+export const metadata = rootMetadata;
 
 export default function RootLayout({
   children,
@@ -40,6 +40,13 @@ export default function RootLayout({
       )}
     >
       <body className="flex h-full flex-col overflow-hidden">
+        <JsonLd
+          data={[
+            createWebSiteJsonLd(),
+            createOrganizationJsonLd(),
+            createSoftwareApplicationJsonLd(),
+          ]}
+        />
         <Analytics />
         {children}
       </body>
