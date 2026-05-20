@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const DEFAULT_SITE_URL = "https://evilbuttons.radiumcoders.com";
+const DEFAULT_SITE_URL = "https://www.evilbuttons.com";
 
 export const siteConfig = {
   name: "Evil Buttons",
