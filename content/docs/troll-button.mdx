@@ -1,0 +1,38 @@
+---
+title: TrollButton
+description: A button that playfully flees from the user's cursor.
+---
+
+TrollButton is a highly evasive component that actively moves away from the user's cursor as they try to click it. It creates a fun, frustrating, and playful interaction using precise motion physics to jump out of reach whenever hovered.
+
+## Preview
+
+<PreviewCard title="TrollButton" note="Interactive">
+  <TrollButton>Catch Me</TrollButton>
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/troll-button</Cmd>
+
+## Usage
+
+```tsx
+import TrollButton from "@/components/evil-buttons/troll-button";
+
+export function ButtonDemo() {
+  return <TrollButton>Click If You Can</TrollButton>;
+}
+```
+
+## Props
+
+| Prop       | Type              | Default | Description                          |
+| ---------- | ----------------- | ------- | ------------------------------------ |
+| `children` | `React.ReactNode` | -       | The visible button label or content. |
+
+## Registry
+
+The registry item includes `components/evil-buttons/troll-button.tsx` and installs `motion` as a dependency. It relies on the standard `Button` component from shadcn/ui.

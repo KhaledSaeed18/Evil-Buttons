@@ -46,9 +46,7 @@ function DocsNavGroup({
 
   return (
     <div className="flex flex-col gap-1 border-t border-border pt-4">
-      <p className="px-2 text-xs uppercase text-muted-foreground">
-        {title}
-      </p>
+      <p className="px-2 text-xs uppercase text-muted-foreground">{title}</p>
       <nav className="flex flex-col gap-0.5">
         {pages.map((page) => (
           <Link

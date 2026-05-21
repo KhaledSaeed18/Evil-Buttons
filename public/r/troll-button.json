@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "troll-button",
+  "type": "registry:ui",
+  "title": "TrollButton",
+  "description": "A button that flees from the user's cursor.",
+  "files": [
+    {
+      "path": "components/evil-buttons/troll-button.tsx",
+      "type": "registry:ui",
+      "target": "components/evil-buttons/troll-button.tsx",
+      "content": "\"use client\";\nimport { Button } from \"@/components/ui/button\";\nimport { motion, useMotionValue } from \"motion/react\";\nimport { ReactNode, useEffect, useRef } from \"react\";\n\nfunction TrollButton({ children }: { children: ReactNode }) {\n  const MotionButton = motion.create(Button);\n  const ref = useRef<HTMLButtonElement>(null);\n\n  const x = useMotionValue(0);\n  const y = useMotionValue(0);\n\n  useEffect(() => {\n    const btn = ref.current;\n    if (!btn) return;\n\n    const handleMouseMove = (e: MouseEvent) => {\n      const rect = btn.getBoundingClientRect();\n\n      const centerX = rect.left + rect.width / 2;\n      const centerY = rect.top + rect.height / 2;\n\n      const dx = e.clientX - centerX;\n      const dy = e.clientY - centerY;\n      const distance = Math.sqrt(dx * dx + dy * dy);\n\n      // Start fleeing when cursor is within 120px of button center\n      if (distance < 120) {\n        const strength = 180;\n        x.jump(-(dx / distance) * strength);\n        y.jump(-(dy / distance) * strength);\n      } else {\n        x.jump(0);\n        y.jump(0);\n      }\n    };\n\n    document.addEventListener(\"mousemove\", handleMouseMove);\n    return () => document.removeEventListener(\"mousemove\", handleMouseMove);\n  }, [x, y]);\n\n  return (\n    <MotionButton\n      ref={ref}\n      variant=\"destructive\"\n      style={{ x, y, position: \"relative\" }}\n    >\n      {children}\n    </MotionButton>\n  );\n}\n\nexport default TrollButton;\n"
+    }
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "dependencies": [
+    "motion"
+  ]
+}

@@ -21,6 +21,7 @@ import MoonIcon from "./evil-buttons/icons/moon";
 import SparkBurstIcon from "./evil-buttons/icons/spark-burst";
 import CloudBlocksIcon from "./evil-buttons/icons/cloud-blocks";
 import DitherButton from "./evil-buttons/dither-button";
+import TrollButton from "./evil-buttons/troll-button";
 
 type CmdProps = {
   children: ReactNode;
@@ -103,5 +104,6 @@ export function getCustomMDXComponents(): MDXComponents {
     CloudBlocksIcon,
     DitherButton,
     Link,
+    TrollButton,
   };
 }

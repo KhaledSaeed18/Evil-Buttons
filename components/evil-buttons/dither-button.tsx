@@ -50,7 +50,7 @@ export type DitherButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 function DitherButton({
   children,
   className,
-  ditherColor,
+  ditherColor = "#999999",
   ditherOpacity = 1,
   ditherSize = PIXEL_SIZE,
   ...props
