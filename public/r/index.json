@@ -130,6 +130,15 @@
       ]
     },
     {
+      "name": "dither-button",
+      "type": "registry:ui",
+      "title": "DitherButton",
+      "description": "A button with an animated 4x4 ordered-dither wave background and a knockout label.",
+      "files": [
+        "components/evil-buttons/dither-button.tsx"
+      ]
+    },
+    {
       "name": "troll-button",
       "type": "registry:ui",
       "title": "TrollButton",

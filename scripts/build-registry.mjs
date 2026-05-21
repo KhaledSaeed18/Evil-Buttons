@@ -65,6 +65,10 @@ const cloudBlocksIconSource = await readFile(
   resolve(root, "components/evil-buttons/icons/cloud-blocks.tsx"),
   "utf8",
 );
+const ditherButtonSource = await readFile(
+  resolve(root, "components/evil-buttons/dither-button.tsx"),
+  "utf8",
+);
 const trollButtonSource = await readFile(
   resolve(root, "components/evil-buttons/troll-button.tsx"),
   "utf8",
@@ -326,6 +330,24 @@ const cloudBlocksIconItem = {
   dependencies: ["clsx", "tailwind-merge"],
 };
 
+const ditherButtonItem = {
+  $schema: "https://ui.shadcn.com/schema/registry-item.json",
+  name: "dither-button",
+  type: "registry:ui",
+  title: "DitherButton",
+  description:
+    "A button with an animated 4x4 ordered-dither wave background and a knockout label.",
+  files: [
+    {
+      path: "components/evil-buttons/dither-button.tsx",
+      type: "registry:ui",
+      target: "components/evil-buttons/dither-button.tsx",
+      content: ditherButtonSource,
+    },
+  ],
+  dependencies: ["clsx", "tailwind-merge"],
+};
+
 const trollButtonItem = {
   $schema: "https://ui.shadcn.com/schema/registry-item.json",
   name: "troll-button",
@@ -463,6 +485,14 @@ const index = {
       files: ["components/evil-buttons/icons/cloud-blocks.tsx"],
     },
     {
+      name: "dither-button",
+      type: "registry:ui",
+      title: "DitherButton",
+      description:
+        "A button with an animated 4x4 ordered-dither wave background and a knockout label.",
+      files: ["components/evil-buttons/dither-button.tsx"],
+    },
+    {
       name: "troll-button",
       type: "registry:ui",
       title: "TrollButton",
@@ -545,6 +575,11 @@ await writeFile(
   "utf8",
 );
 await writeFile(
+  resolve(registryDir, "dither-button.json"),
+  `${JSON.stringify(ditherButtonItem, null, 2)}\n`,
+  "utf8",
+);
+await writeFile(
   resolve(registryDir, "troll-button.json"),
   `${JSON.stringify(trollButtonItem, null, 2)}\n`,
   "utf8",
@@ -571,4 +606,5 @@ console.log("- public/r/sun-dim.json");
 console.log("- public/r/moon.json");
 console.log("- public/r/spark-burst.json");
 console.log("- public/r/cloud-blocks.json");
+console.log("- public/r/dither-button.json");
 console.log("- public/r/troll-button.json");
