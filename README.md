@@ -119,6 +119,9 @@ Contributions are welcome! To add a new component:
 3. Update `scripts/build-registry.mjs` to include your component
 4. Run `pnpm registry:build` to generate registry files
 
+## Star History
+[![RepoStars](https://repostars.dev/api/embed?repo=radiumcoders%2FEvil-Buttons&theme=dark)](https://repostars.dev/?repos=radiumcoders%2FEvil-Buttons&theme=dark)
+
 ## License
 
 Apache-2.0 license
