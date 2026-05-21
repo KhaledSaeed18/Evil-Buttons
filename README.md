@@ -2,19 +2,28 @@
 
 A [shadcn/ui](https://ui.shadcn.com) registry featuring a collection of animated components built with [Motion](https://motion.dev/). Each component is designed to add punchy, interactive feedback to your UI with minimal setup.
 
+### Github
 ![GitHub Stars](https://www.shieldcn.dev/github/stars/radiumcoders/Evil-Buttons.svg?variant=secondary&size=sm)
 ![GitHub Forks](https://www.shieldcn.dev/github/forks/radiumcoders/Evil-Buttons.svg?variant=secondary&size=sm)
 ![Watchers](https://www.shieldcn.dev/github/watchers/radiumcoders/Evil-Buttons.svg?variant=secondary&size=sm)
 ![Branches](https://www.shieldcn.dev/github/branches/radiumcoders/Evil-Buttons.svg?variant=ghost&size=sm)
 ![Contributors](https://www.shieldcn.dev/github/contributors/radiumcoders/Evil-Buttons.svg?theme=emerald&size=sm)
 ![Last commit](https://www.shieldcn.dev/github/last-commit/radiumcoders/Evil-Buttons.svg?variant=secondary&size=sm)
+
+### License
 ![License](https://www.shieldcn.dev/github/license/radiumcoders/Evil-Buttons.svg?variant=ghost&size=sm)
+
+### Tooling
 ![Package mgr · pnpm](https://www.shieldcn.dev/badge/Package_mgr-pnpm-F69220.svg?logo=pnpm&variant=branded&size=sm)
 ![Language · TypeScript](https://www.shieldcn.dev/badge/Language-TypeScript-3178C6.svg?logo=typescript&variant=branded&size=sm)
 ![Lint · ESLint](https://www.shieldcn.dev/badge/Lint-ESLint-4B32C3.svg?logo=eslint&variant=branded&size=sm)
 ![Framework · Next.js](https://www.shieldcn.dev/badge/Framework-Next.js-000000.svg?logo=nextdotjs&variant=branded&size=sm)
+
+### Stack
 ![React](https://www.shieldcn.dev/badge/Stack-React-61DAFB.svg?logo=react&variant=branded&size=sm)
 ![Tailwind CSS](https://www.shieldcn.dev/badge/Stack-Tailwind_CSS-06B6D4.svg?logo=tailwindcss&variant=branded&size=sm)
+
+### Agents
 ![Agent-friendly AGENTS.md](https://www.shieldcn.dev/badge/Agent--friendly-AGENTS.md-D97757.svg?variant=secondary&size=sm)
 
 ## Features
