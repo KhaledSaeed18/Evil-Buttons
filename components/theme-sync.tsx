@@ -14,7 +14,9 @@ function readPreferredTheme() {
     return stored;
   }
 
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? DARK_THEME : LIGHT_THEME;
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? DARK_THEME
+    : LIGHT_THEME;
 }
 
 function applyTheme(theme: typeof DARK_THEME | typeof LIGHT_THEME) {

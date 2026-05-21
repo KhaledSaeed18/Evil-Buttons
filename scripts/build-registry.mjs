@@ -65,6 +65,10 @@ const cloudBlocksIconSource = await readFile(
   resolve(root, "components/evil-buttons/icons/cloud-blocks.tsx"),
   "utf8",
 );
+const trollButtonSource = await readFile(
+  resolve(root, "components/evil-buttons/troll-button.tsx"),
+  "utf8",
+);
 
 const clickPowerupItem = {
   $schema: "https://ui.shadcn.com/schema/registry-item.json",
@@ -322,6 +326,25 @@ const cloudBlocksIconItem = {
   dependencies: ["clsx", "tailwind-merge"],
 };
 
+const trollButtonItem = {
+  $schema: "https://ui.shadcn.com/schema/registry-item.json",
+  name: "troll-button",
+  type: "registry:ui",
+  title: "TrollButton",
+  description:
+    "A button that flees from the user's cursor.",
+  files: [
+    {
+      path: "components/evil-buttons/troll-button.tsx",
+      type: "registry:ui",
+      target: "components/evil-buttons/troll-button.tsx",
+      content: trollButtonSource,
+    },
+  ],
+  registryDependencies: ["button"],
+  dependencies: ["motion"],
+};
+
 const index = {
   $schema: "https://ui.shadcn.com/schema/registry.json",
   name: "evil-buttons",
@@ -439,6 +462,14 @@ const index = {
         "A compact pixel-style cloud icon for weather UI and soft utility surfaces.",
       files: ["components/evil-buttons/icons/cloud-blocks.tsx"],
     },
+    {
+      name: "troll-button",
+      type: "registry:ui",
+      title: "TrollButton",
+      description:
+        "A button that flees from the user's cursor.",
+      files: ["components/evil-buttons/troll-button.tsx"],
+    },
   ],
 };
 
@@ -514,6 +545,11 @@ await writeFile(
   "utf8",
 );
 await writeFile(
+  resolve(registryDir, "troll-button.json"),
+  `${JSON.stringify(trollButtonItem, null, 2)}\n`,
+  "utf8",
+);
+await writeFile(
   registryIndexPath,
   `${JSON.stringify(index, null, 2)}\n`,
   "utf8",
@@ -535,3 +571,4 @@ console.log("- public/r/sun-dim.json");
 console.log("- public/r/moon.json");
 console.log("- public/r/spark-burst.json");
 console.log("- public/r/cloud-blocks.json");
+console.log("- public/r/troll-button.json");

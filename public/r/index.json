@@ -128,6 +128,15 @@
       "files": [
         "components/evil-buttons/icons/cloud-blocks.tsx"
       ]
+    },
+    {
+      "name": "troll-button",
+      "type": "registry:ui",
+      "title": "TrollButton",
+      "description": "A button that flees from the user's cursor.",
+      "files": [
+        "components/evil-buttons/troll-button.tsx"
+      ]
     }
   ]
 }
