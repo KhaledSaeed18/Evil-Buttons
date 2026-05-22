@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chrome-button",
+  "type": "registry:ui",
+  "title": "ChromeButton",
+  "description": "A button with an animated liquid chrome background.",
+  "files": [
+    {
+      "path": "components/evil-buttons/chrome-button.tsx",
+      "type": "registry:ui",
+      "target": "components/evil-buttons/chrome-button.tsx",
+      "content": "import { ReactNode } from \"react\";\nimport LiquidChrome from \"../LiquidChrome\";\n\nfunction ChromeButton({ children }: { children: ReactNode }) {\n  return (\n    <button className=\"relative py-4 px-6 rounded-md bg-neutral-950 overflow-hidden group text-white font-bold tracking-widest drop-shadow-md\">\n      <div className=\"absolute inset-0 z-0 opacity-80 group-hover:opacity-100 transition-opacity duration-500\">\n        <LiquidChrome\n          baseColor={[0.1, 0.1, 0.1]}\n          speed={1}\n          amplitude={0.6}\n          interactive={true}\n        />\n      </div>\n      <span className=\"relative z-10\">{children}</span>\n    </button>\n  );\n}\n\nexport default ChromeButton;"
+    }
+  ],
+  "registryDependencies": [
+    "@react-bits/LiquidChrome-TS-TW"
+  ],
+  "dependencies": []
+}
