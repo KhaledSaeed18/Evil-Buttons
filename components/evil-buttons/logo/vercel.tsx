@@ -58,7 +58,11 @@ export default function Vercel() {
 
 const Logo = ({ className }: { className?: string }) => {
   return (
-    <svg viewBox="0 0 256 222" preserveAspectRatio="xMidYMid" className={cn(className)}>
+    <svg
+      viewBox="0 0 256 222"
+      preserveAspectRatio="xMidYMid"
+      className={cn(className)}
+    >
       <path fill="currentColor" d="m128 0 128 221.705H0z" />
     </svg>
   );
