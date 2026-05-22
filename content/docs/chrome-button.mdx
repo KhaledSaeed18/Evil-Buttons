@@ -1,0 +1,44 @@
+---
+title: ChromeButton
+description: A button with an animated liquid chrome background.
+---
+
+ChromeButton uses the `@react-bits/LiquidChrome` component to render a stunning, animated liquid chrome background behind the button label.
+
+## Preview
+
+<PreviewCard title="ChromeButton" note="Interactive">
+  <ChromeButton>Deploy Doom</ChromeButton>
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/chrome-button</Cmd>
+
+## Usage
+
+```tsx
+import ChromeButton from "@/components/evil-buttons/chrome-button";
+
+export function ButtonDemo() {
+  return (
+    <ChromeButton>
+      <span className="relative z-10 text-white font-bold tracking-widest text-lg drop-shadow-md">
+        CHROME
+      </span>
+    </ChromeButton>
+  );
+}
+```
+
+## Props
+
+| Prop       | Type              | Default | Description                          |
+| ---------- | ----------------- | ------- | ------------------------------------ |
+| `children` | `React.ReactNode` | -       | The visible button label or content. |
+
+## Registry
+
+The registry item includes `components/evil-buttons/chrome-button.tsx` and installs `@react-bits/LiquidChrome-TS-TW` as a registry dependency.

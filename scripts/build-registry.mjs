@@ -73,6 +73,10 @@ const trollButtonSource = await readFile(
   resolve(root, "components/evil-buttons/troll-button.tsx"),
   "utf8",
 );
+const chromeButtonSource = await readFile(
+  resolve(root, "components/evil-buttons/chrome-button.tsx"),
+  "utf8",
+);
 
 const clickPowerupItem = {
   $schema: "https://ui.shadcn.com/schema/registry-item.json",
@@ -367,6 +371,25 @@ const trollButtonItem = {
   dependencies: ["motion"],
 };
 
+const chromeButtonItem = {
+  $schema: "https://ui.shadcn.com/schema/registry-item.json",
+  name: "chrome-button",
+  type: "registry:ui",
+  title: "ChromeButton",
+  description:
+    "A button with an animated liquid chrome background.",
+  files: [
+    {
+      path: "components/evil-buttons/chrome-button.tsx",
+      type: "registry:ui",
+      target: "components/evil-buttons/chrome-button.tsx",
+      content: chromeButtonSource,
+    },
+  ],
+  registryDependencies: ["@react-bits/LiquidChrome-TS-TW"],
+  dependencies: [],
+};
+
 const index = {
   $schema: "https://ui.shadcn.com/schema/registry.json",
   name: "evil-buttons",
@@ -500,6 +523,14 @@ const index = {
         "A button that flees from the user's cursor.",
       files: ["components/evil-buttons/troll-button.tsx"],
     },
+    {
+      name: "chrome-button",
+      type: "registry:ui",
+      title: "ChromeButton",
+      description:
+        "A button with an animated liquid chrome background.",
+      files: ["components/evil-buttons/chrome-button.tsx"],
+    },
   ],
 };
 
@@ -585,6 +616,11 @@ await writeFile(
   "utf8",
 );
 await writeFile(
+  resolve(registryDir, "chrome-button.json"),
+  `${JSON.stringify(chromeButtonItem, null, 2)}\n`,
+  "utf8",
+);
+await writeFile(
   registryIndexPath,
   `${JSON.stringify(index, null, 2)}\n`,
   "utf8",
@@ -608,3 +644,4 @@ console.log("- public/r/spark-burst.json");
 console.log("- public/r/cloud-blocks.json");
 console.log("- public/r/dither-button.json");
 console.log("- public/r/troll-button.json");
+console.log("- public/r/chrome-button.json");
