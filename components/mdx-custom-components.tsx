@@ -21,6 +21,7 @@ import MoonIcon from "./evil-buttons/icons/moon";
 import SparkBurstIcon from "./evil-buttons/icons/spark-burst";
 import CloudBlocksIcon from "./evil-buttons/icons/cloud-blocks";
 import DitherButton from "./evil-buttons/dither-button";
+import EvilEyeButton from "./evil-buttons/evil-eye-button";
 import TrollButton from "./evil-buttons/troll-button";
 import ChromeButton from "./evil-buttons/chrome-button";
 
@@ -104,6 +105,7 @@ export function getCustomMDXComponents(): MDXComponents {
     SparkBurstIcon,
     CloudBlocksIcon,
     DitherButton,
+    EvilEyeButton,
     Link,
     TrollButton,
     ChromeButton,
