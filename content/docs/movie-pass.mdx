@@ -1,9 +1,9 @@
 ---
 title: MoviePass Button
-description: A ticket-style button with a tear-off animation, like a cinema stub.
+description: A ticket-style button like a cinema stub.
 ---
 
-MoviePassButton is a ticket-style button with a satisfying tear-off animation. When clicked, the label tears away like a cinema ticket stub, revealing an action confirmation. Perfect for purchase, booking, or confirmation flows.
+MoviePassButton is a ticket-style button. When clicked, it shrinks like a standard button. Perfect for purchase, booking, or confirmation flows.
 
 ## Preview
 
@@ -24,7 +24,7 @@ import MoviePassButton from "@/components/evil-buttons/movie-pass";
 
 export function ButtonDemo() {
   return (
-    <MoviePassButton icon="" color="primary">
+    <MoviePassButton>
       Admit One
     </MoviePassButton>
   );
@@ -37,10 +37,7 @@ export function ButtonDemo() {
 | ----------- | -------------------------------------- | ---------- | ------------------------------------------------ |
 | `children`  | `React.ReactNode`                      | -          | The visible button label or content.             |
 | `className` | `string`                               | -          | Extra classes passed to the wrapper.             |
-| `color`     | `"primary" \| "secondary" \| "destructive" \| "accent"` | `"primary"` | Color theme for the button.                      |
-| `icon`      | `React.ReactNode`                      | -          | Icon displayed in the left cap section.          |
-| `onClick`   | `() => void`                           | -          | Callback fired after the tear animation completes. |
 
 ## Registry
 
-The registry item includes `components/evil-buttons/movie-pass.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies. The component imports `cn` from `@/lib/utils`.
+The registry item includes `components/evil-buttons/movie-pass.tsx`. The component imports `cn` from `@/lib/utils`.

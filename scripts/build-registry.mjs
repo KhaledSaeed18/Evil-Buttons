@@ -132,23 +132,23 @@ const shinyItem = {
   dependencies: [],
 };
 
-const moviePassItem = {
-  $schema: "https://ui.shadcn.com/schema/registry-item.json",
-  name: "movie-pass",
-  type: "registry:ui",
-  title: "MoviePassButton",
-  description:
-    "A ticket-style button with a tear-off animation, like a cinema stub.",
-  files: [
-    {
-      path: "components/evil-buttons/movie-pass.tsx",
-      type: "registry:ui",
-      target: "components/evil-buttons/movie-pass.tsx",
-      content: moviePassSource,
-    },
-  ],
-  dependencies: ["motion", "clsx", "tailwind-merge"],
-};
+  const moviePassItem = {
+    $schema: "https://ui.shadcn.com/schema/registry-item.json",
+    name: "movie-pass",
+    type: "registry:ui",
+    title: "MoviePassButton",
+    description:
+      "A ticket-style button like a cinema stub.",
+    files: [
+      {
+        path: "components/evil-buttons/movie-pass.tsx",
+        type: "registry:ui",
+        target: "components/evil-buttons/movie-pass.tsx",
+        content: moviePassSource,
+      },
+    ],
+    dependencies: [],
+  };
 
 const minimalItem = {
   $schema: "https://ui.shadcn.com/schema/registry-item.json",
