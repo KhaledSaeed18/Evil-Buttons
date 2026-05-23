@@ -3,7 +3,7 @@
   "name": "movie-pass",
   "type": "registry:ui",
   "title": "MoviePassButton",
-  "description": "A ticket-style button with a tear-off animation, like a cinema stub.",
+  "description": "A ticket-style button like a cinema stub.",
   "files": [
     {
       "path": "components/evil-buttons/movie-pass.tsx",
@@ -12,9 +12,5 @@
       "content": "\"use client\";\r\n\r\nimport { ReactNode } from \"react\";\r\nimport { cn } from \"@/lib/utils\";\r\n\r\nfunction MoviePassButton({\r\n  children,\r\n  className,\r\n}: {\r\n  children: ReactNode;\r\n  className?: string;\r\n}) {\r\n  return (\r\n    <button\r\n      className={cn(\r\n        className,\r\n        \"px-6 py-3 bg-primary text-background\",\r\n        \"relative\",\r\n        \"active:scale-95 transition-all duration-75\",\r\n      )}\r\n    >\r\n      {/* Outer corner cutouts */}\r\n      <div className=\"size-4 rounded-full absolute -top-1.5 bg-background -left-1.5\" />\r\n      <div className=\"size-4 rounded-full absolute -top-1.5 bg-background -right-1.5\" />\r\n      <div className=\"size-4 rounded-full absolute -bottom-1.5 bg-background -right-1.5\" />\r\n      <div className=\"size-4 rounded-full absolute -bottom-1.5 bg-background -left-1.5\" />\r\n\r\n      {children}\r\n    </button>\r\n  );\r\n}\r\nexport default MoviePassButton;\r\n"
     }
   ],
-  "dependencies": [
-    "motion",
-    "clsx",
-    "tailwind-merge"
-  ]
+  "dependencies": []
 }

@@ -419,14 +419,14 @@ const index = {
         "A glossy, gradient-styled button with a layered inner glow and press feedback.",
       files: ["components/evil-buttons/shiny-button.tsx"],
     },
-    {
-      name: "movie-pass",
-      type: "registry:ui",
-      title: "MoviePassButton",
-      description:
-        "A ticket-style button with a tear-off animation, like a cinema stub.",
-      files: ["components/evil-buttons/movie-pass.tsx"],
-    },
+      {
+        name: "movie-pass",
+        type: "registry:ui",
+        title: "MoviePassButton",
+        description:
+          "A ticket-style button like a cinema stub.",
+        files: ["components/evil-buttons/movie-pass.tsx"],
+      },
     {
       name: "minimal",
       type: "registry:ui",
