@@ -41,7 +41,7 @@ const buttonRenderers: Record<string, ButtonRenderer> = {
   "chrome-button": (label) => (
     <ChromeButton>{label}</ChromeButton>
   ),
-  "brutal-button": (label) => <BrutalButton>{label}</BrutalButton>,
+  "brutal-button": (label) => <BrutalButton className="m-4">{label}</BrutalButton>,
 };
 
 export function ButtonShowcaseGrid() {
