@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { permanentRedirect } from "next/navigation";
+import { LandingPage } from "@/components/landing/landing-page";
 
 export const metadata: Metadata = {
   alternates: {
-    canonical: "/docs",
+    canonical: "/",
   },
-  robots: {
-    index: false,
-    follow: true,
+  openGraph: {
+    url: "/",
   },
 };
 
 export default function HomePage() {
-  permanentRedirect("/docs");
+  return <LandingPage />;
 }

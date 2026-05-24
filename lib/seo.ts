@@ -7,7 +7,7 @@ export const siteConfig = {
   shortName: "EvilButtons",
   tagline: "Animated shadcn/ui components with Motion",
   description:
-    "A shadcn/ui registry of animated buttons, icons, logos, and scroll bars built with Motion. Live previews, copy-paste docs, and one-command CLI installs.",
+    "A shadcn/ui registry of animated buttons built With an Evil Touch. Live previews, copy-paste docs, and one-command CLI installs.",
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? DEFAULT_SITE_URL).replace(/\/$/, ""),
   locale: "en_US",
   github: "https://github.com/radiumcoders/evil-buttons",
