@@ -59,7 +59,7 @@ export function ButtonShowcaseGrid() {
           </p>
         </div>
 
-        <PatternSeparator className="mb-8 md:mb-10" />
+        <PatternSeparator className="mb-8 md:mb-10 mask-l-from-0% mask-r-from-0%" />
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-8 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-10">
           {buttonShowcaseItems.map((item) => (
