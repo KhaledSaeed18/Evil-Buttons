@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Review — Evil Buttons</title>
+<style>
+  :root {
+    --bg: #0f0f11;
+    --surface: #1a1a1e;
+    --border: #2a2a30;
+    --text: #e4e4e7;
+    --muted: #a1a1aa;
+    --accent: #ff6f37;
+    --accent-dim: rgba(255, 111, 55, 0.15);
+    --green: #22c55e;
+    --yellow: #eab308;
+    --red: #ef4444;
+    --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    padding: 2rem;
+  }
+  .container { max-width: 780px; margin: 0 auto; }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .meta-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-size: 0.8125rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    font-family: var(--font-mono);
+  }
+  .score-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+  }
+  .score-value { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+  .score-max { color: var(--muted); }
+  .section { margin-bottom: 2.5rem; }
+  .section h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--accent);
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+  .section h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+  .section p, .section li { color: var(--muted); font-size: 0.9375rem; }
+  .score-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+  }
+  .score-table th, .score-table td {
+    text-align: left;
+    padding: 0.625rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.875rem;
+  }
+  .score-table th {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .score-table .num {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-weight: 600;
+  }
+  .bar-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .bar {
+    flex: 1;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .bar-fill { height: 100%; border-radius: 3px; }
+  .bar-fill.green { background: var(--green); }
+  .bar-fill.yellow { background: var(--yellow); }
+  .bar-fill.red { background: var(--red); }
+  .bar-fill.amber { background: var(--accent); }
+  .issue-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+  .issue-list li {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  .issue-list .severity {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    font-weight: 600;
+  }
+  .severity.high { background: rgba(239, 68, 68, 0.15); color: var(--red); }
+  .severity.medium { background: rgba(234, 179, 8, 0.15); color: var(--yellow); }
+  .severity.low { background: rgba(161, 161, 170, 0.15); color: var(--muted); }
+  .issue-list .title { font-weight: 600; color: var(--text); }
+  .issue-list .desc { margin-top: 0.375rem; color: var(--muted); font-size: 0.8125rem; }
+  .issue-list .mode {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--accent);
+    background: var(--accent-dim);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+  .good-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .good-list li {
+    padding: 0.5rem 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.8125rem;
+    color: var(--muted);
+  }
+  .good-list li::before { content: "+ "; color: var(--green); font-weight: 700; }
+  .smell-item {
+    padding: 0.5rem 0.75rem;
+    background: rgba(234, 179, 8, 0.08);
+    border-left: 2px solid var(--yellow);
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 0.5rem;
+    font-size: 0.8125rem;
+  }
+  .smell-item.absent {
+    background: rgba(34, 197, 94, 0.06);
+    border-left-color: var(--green);
+  }
+  .smell-item .label {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-right: 0.5rem;
+  }
+  .smell-item.present .label { color: var(--yellow); }
+  .smell-item.absent .label { color: var(--green); }
+  .flow-step {
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    background: var(--surface);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    font-size: 0.875rem;
+  }
+  .flow-step .step-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-right: 0.5rem;
+  }
+  hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+  .rec {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  .rec .rec-title { font-weight: 600; color: var(--text); }
+  .rec .rec-mode {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--accent);
+    background: var(--accent-dim);
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    margin-left: 0.5rem;
+  }
+  .rec .rec-desc { margin-top: 0.375rem; color: var(--muted); font-size: 0.8125rem; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+    <div>
+      <h1 style="font-size: 1.5rem; font-weight: 700;">Evil Buttons — Design Review</h1>
+      <div class="meta-row">
+        <span>2026-05-24</span>
+        <span>•</span>
+        <span>Landing page (/)</span>
+        <span>•</span>
+        <span>localhost:3333</span>
+      </div>
+    </div>
+    <div class="score-badge">
+      <span class="score-value">28</span><span class="score-max">/50</span>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <h2>Gut Reaction</h2>
+  <p>The page has a clear identity in its components but not in its frame. The button grid is the star — WebGL eyes, fleeing buttons, dither patterns, liquid chrome — and each individual component knows exactly what it wants to be. The surrounding shell (header, footer, page frame, separators) is a restrained, professional shadcn site that doesn't match the intensity or personality of what it contains. The name "Evil Buttons" promises mischief; the monochrome frame delivers a design-toolkit landing page. The components are doing all the heavy lifting while the container coasts.</p>
+</section>
+
+<section class="section">
+  <h2>Experience Walkthrough</h2>
+  <div class="flow-step"><span class="step-num">1.</span> <strong>Arrival</strong> — Diagonal pattern separator, framed header with solid "Get Started" button. Monochrome, clean, neutral. No "evil" signal on first paint.</div>
+  <div class="flow-step"><span class="step-num">2.</span> <strong>Hero</strong> — Badge, heading, description, two CTAs. Heading is functional ("Animated buttons with your taste") but doesn't commit to personality. Description tells what, not why.</div>
+  <div class="flow-step"><span class="step-num">3.</span> <strong>Grid discovery</strong> — Ten interactive cards. EvilEyeButton (orange fire glow) is the visual anchor. TrollButton flees. StickyButton follows cursor. This is the strongest moment.</div>
+  <div class="flow-step"><span class="step-num">4.</span> <strong>Interaction</strong> — Buttons are excellent interactive objects. Cards have no hover feedback. Discovery of interactions feels accidental, not guided.</div>
+  <div class="flow-step"><span class="step-num">5.</span> <strong>Footer</strong> — Links, attribution, theme key hint, then "EVIL BUTTONS" fluid text. The most brand-forward visual is buried at the bottom.</div>
+  <p style="margin-top: 1rem;"><strong>Break point:</strong> The frame and the components tell different stories. The frame says "clean developer toolkit"; the components say "playful, interactive, dark personality."</p>
+</section>
+
+<section class="section">
+  <h2>Lens Scores</h2>
+  <table class="score-table">
+    <thead>
+      <tr><th>Lens</th><th>Score</th><th></th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>First impression</td>
+        <td class="num">6/10</td>
+        <td style="width: 140px;"><div class="bar-cell"><div class="bar"><div class="bar-fill amber" style="width: 60%;"></div></div></div></td>
+        <td>Strong components, weak frame. The "evil" brand isn't visible until the grid.</td>
+      </tr>
+      <tr>
+        <td>Hierarchy</td>
+        <td class="num">7/10</td>
+        <td style="width: 140px;"><div class="bar-cell"><div class="bar"><div class="bar-fill green" style="width: 70%;"></div></div></div></td>
+        <td>Clear three-section structure. Header CTA competes with hero CTAs. Grid cells have equal weight.</td>
+      </tr>
+      <tr>
+        <td>Color voice</td>
+        <td class="num">4/10</td>
+        <td style="width: 140px;"><div class="bar-cell"><div class="bar"><div class="bar-fill red" style="width: 40%;"></div></div></div></td>
+        <td>Achromatic design tokens (chroma 0 everywhere). No accent color in the system. Vibrant button colors disconnected from the shell.</td>
+      </tr>
+      <tr>
+        <td>Type voice</td>
+        <td class="num">6/10</td>
+        <td style="width: 140px;"><div class="bar-cell"><div class="bar"><div class="bar-fill amber" style="width: 60%;"></div></div></div></td>
+        <td>Solid scaling and tracking. Inter/Geist are defaults, not choices. Helvetica hardcoded in SVG.</td>
+      </tr>
+      <tr>
+        <td>Interaction feel</td>
+        <td class="num">5/10</td>
+        <td style="width: 140px;"><div class="bar-cell"><div class="bar"><div class="bar-fill yellow" style="width: 50%;"></div></div></div></td>
+        <td>Buttons are excellent. Surrounding chrome has minimal hover states, no focus rings, no page animation, no card hover states.</td>
+      </tr>
+      <tr style="font-weight: 700; border-top: 2px solid var(--border);">
+        <td>Total</td>
+        <td class="num" style="color: var(--accent);">28/50</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="section">
+  <h2>Smell Analysis</h2>
+  <h3 style="color: var(--yellow); font-size: 0.8125rem; margin-bottom: 0.75rem;">Present</h3>
+  <div class="smell-item present">
+    <span class="label">shadcn blank palette</span> All 30+ CSS custom properties use <code>oklch(X 0 0)</code> — zero chroma. Default shadcn init output, not a designed palette. An "evil" product deserves a palette with personality.
+  </div>
+  <div class="smell-item present">
+    <span class="label">default font cocktail</span> Inter loaded as primary sans, Geist Sans loaded but unused for display. This is the <code>create-next-app</code> starter font, not a deliberate typographic choice.
+  </div>
+  <div class="smell-item present">
+    <span class="label">center-hero-with-pill pattern</span> Mono badge → centered heading → centered paragraph → two CTAs. This composition belongs to the template, not to Evil Buttons.
+  </div>
+
+  <h3 style="color: var(--green); font-size: 0.8125rem; margin-bottom: 0.75rem; margin-top: 1.25rem;">Absent (good)</h3>
+  <div class="smell-item absent"><span class="label">no gradient hero</span> Escapes the gradient-background hero tell.</div>
+  <div class="smell-item absent"><span class="label">no blue-purple CTA</span> No generic indigo-cyan gradient button.</div>
+  <div class="smell-item absent"><span class="label">no floating mockup</span> No 3D device render placeholder.</div>
+  <div class="smell-item absent"><span class="label">no AI illustration</span> No generic placeholder art.</div>
+</section>
+
+<section class="section">
+  <h2>Issues (ordered by impact)</h2>
+  <ol class="issue-list">
+    <li>
+      <span class="severity high">High</span>
+      <span class="title">Achromatic design tokens</span>
+      <div class="desc">30+ CSS variables, all chroma 0. The biggest accessibility blocker of the "evil" brand. An accent color needs to enter the token system and tint neutral surfaces.</div>
+      <span class="mode">/design recolor</span>
+    </li>
+    <li>
+      <span class="severity high">High</span>
+      <span class="title">Card grid has no hover/selection feedback</span>
+      <div class="desc">Grid cards are the main interaction surface but have zero hover state. Only the title link changes color. Cards should feel alive.</div>
+      <span class="mode">/design interaction</span>
+    </li>
+    <li>
+      <span class="severity high">High</span>
+      <span class="title">Nav links lack visible focus rings</span>
+      <div class="desc">Header and footer links use only <code>transition-colors</code>. No <code>focus-visible:ring</code> on any nav link. Keyboard users cannot see where they are.</div>
+      <span class="mode">/design interaction</span>
+    </li>
+    <li>
+      <span class="severity medium">Medium</span>
+      <span class="title">"EVIL BUTTONS" fluid text is buried in the footer</span>
+      <div class="desc">The most brand-forward visual is at the bottom. Consider pulling a smaller version into the hero or using it as a section background.</div>
+      <span class="mode">/design relayout</span>
+    </li>
+    <li>
+      <span class="severity medium">Medium</span>
+      <span class="title">No section transition or scroll narrative</span>
+      <div class="desc">The page is a static stack of sections. No reveal animation, no parallax, no sticky positioning. The buttons inside the grid are interactive, but the page itself doesn't move.</div>
+      <span class="mode">/design motion</span>
+    </li>
+    <li>
+      <span class="severity medium">Medium</span>
+      <span class="title">Body copy doesn't sell</span>
+      <div class="desc">The description reads like a README paragraph, not a landing page promise. It tells what the product is factually but doesn't create desire.</div>
+      <span class="mode">content (not a design mode)</span>
+    </li>
+    <li>
+      <span class="severity medium">Medium</span>
+      <span class="title">"Get Started" CTA is a utility button</span>
+      <div class="desc"><code>bg-foreground text-background</code> makes it the highest-contrast element, competing with the hero heading. An "evil" product's primary CTA should have personality.</div>
+      <span class="mode">/design recolor</span>
+    </li>
+    <li>
+      <span class="severity low">Low</span>
+      <span class="title">No theme indicator in header</span>
+      <div class="desc">The 'd' key toggles theme, but there's no visual indicator of current state in the header. A sun/moon icon would close the loop.</div>
+      <span class="mode">/design interaction</span>
+    </li>
+    <li>
+      <span class="severity low">Low</span>
+      <span class="title">Eight buttons share "Deploy Doom" label</span>
+      <div class="desc">Only EvilEye and Troll have unique labels. Shared text flattens distinct personalities.</div>
+      <span class="mode">content</span>
+    </li>
+    <li>
+      <span class="severity low">Low</span>
+      <span class="title">GridButton ARIA misuse</span>
+      <div class="desc">Decorative DotmSquare11 element has <code>role="status"</code> and "Loading" label. Misleads screen readers.</div>
+      <span class="mode">/design surface</span>
+    </li>
+  </ol>
+</section>
+
+<section class="section">
+  <h2>What's Working</h2>
+  <ul class="good-list">
+    <li>Button interaction quality — EvilEye WebGL, Troll flee, ClickPowerUp three-state, Dither canvas animation — each genuinely excellent</li>
+    <li>Pattern separator — distinct page signature with refined masking variant</li>
+    <li>Footer fluid gradient text — strongest brand moment, mouse-reactive</li>
+    <li>Theme toggle with 'd' key — clean implementation with edit-field detection</li>
+    <li>Comprehensive SEO — JSON-LD, OpenGraph, Twitter cards, canonical URLs</li>
+    <li><code>prefers-reduced-motion</code> handling — EvilEyeButton static fallback, DitherButton reduced motion check</li>
+    <li>Code quality — consistent <code>cn()</code>, proper TypeScript, well-structured exports</li>
+    <li>CLI integration — genuine value proposition for shadcn users</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2>Recommendations</h2>
+  <div class="rec">
+    <span class="rec-title">1. Recolor</span><span class="rec-mode">/design recolor</span>
+    <div class="rec-desc">Break the achromatic shell. Introduce a warm desaturated accent into CSS tokens. Tint neutral grays. Chroma 0 across 30+ variables is the single biggest visual issue.</div>
+  </div>
+  <div class="rec">
+    <span class="rec-title">2. Interaction</span><span class="rec-mode">/design interaction</span>
+    <div class="rec-desc">Add card hover states, focus rings to nav links, theme indicator in header, fix GridButton ARIA misuse.</div>
+  </div>
+  <div class="rec">
+    <span class="rec-title">3. Motion</span><span class="rec-mode">/design motion</span>
+    <div class="rec-desc">Add scroll-triggered reveals for the grid section, subtle parallax or sticky effect for the hero, entrance animations for section transitions.</div>
+  </div>
+  <div class="rec">
+    <span class="rec-title">4. Voice</span><span class="rec-mode">/design voice</span>
+    <div class="rec-desc">Reconsider hero copy. "With an Evil Touch" has more personality than "with your taste." Lean into the voice throughout.</div>
+  </div>
+  <div class="rec">
+    <span class="rec-title">5. Relayout consideration</span><span class="rec-mode">/design relayout</span>
+    <div class="rec-desc">Pull the fluid gradient text into the hero or as background. The strongest visual shouldn't live exclusively in the footer.</div>
+  </div>
+</section>
+
+</div>
+</body>
+</html>
