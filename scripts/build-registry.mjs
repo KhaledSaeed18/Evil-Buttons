@@ -69,6 +69,10 @@ const ditherButtonSource = await readFile(
   resolve(root, "components/evil-buttons/dither-button.tsx"),
   "utf8",
 );
+const evilEyeButtonSource = await readFile(
+  resolve(root, "components/evil-buttons/evil-eye-button.tsx"),
+  "utf8",
+);
 const trollButtonSource = await readFile(
   resolve(root, "components/evil-buttons/troll-button.tsx"),
   "utf8",
@@ -352,6 +356,25 @@ const ditherButtonItem = {
   dependencies: ["clsx", "tailwind-merge"],
 };
 
+const evilEyeButtonItem = {
+  $schema: "https://ui.shadcn.com/schema/registry-item.json",
+  name: "evil-eye-button",
+  type: "registry:ui",
+  title: "EvilEyeButton",
+  description:
+    "A button with a React Bits evil eye shader background and a fiery readable label.",
+  files: [
+    {
+      path: "components/evil-buttons/evil-eye-button.tsx",
+      type: "registry:ui",
+      target: "components/evil-buttons/evil-eye-button.tsx",
+      content: evilEyeButtonSource,
+    },
+  ],
+  registryDependencies: ["@react-bits/EvilEye-TS-TW"],
+  dependencies: ["clsx", "tailwind-merge"],
+};
+
 const trollButtonItem = {
   $schema: "https://ui.shadcn.com/schema/registry-item.json",
   name: "troll-button",
@@ -516,6 +539,14 @@ const index = {
       files: ["components/evil-buttons/dither-button.tsx"],
     },
     {
+      name: "evil-eye-button",
+      type: "registry:ui",
+      title: "EvilEyeButton",
+      description:
+        "A button with a React Bits evil eye shader background and a fiery readable label.",
+      files: ["components/evil-buttons/evil-eye-button.tsx"],
+    },
+    {
       name: "troll-button",
       type: "registry:ui",
       title: "TrollButton",
@@ -611,6 +642,11 @@ await writeFile(
   "utf8",
 );
 await writeFile(
+  resolve(registryDir, "evil-eye-button.json"),
+  `${JSON.stringify(evilEyeButtonItem, null, 2)}\n`,
+  "utf8",
+);
+await writeFile(
   resolve(registryDir, "troll-button.json"),
   `${JSON.stringify(trollButtonItem, null, 2)}\n`,
   "utf8",
@@ -643,5 +679,6 @@ console.log("- public/r/moon.json");
 console.log("- public/r/spark-burst.json");
 console.log("- public/r/cloud-blocks.json");
 console.log("- public/r/dither-button.json");
+console.log("- public/r/evil-eye-button.json");
 console.log("- public/r/troll-button.json");
 console.log("- public/r/chrome-button.json");

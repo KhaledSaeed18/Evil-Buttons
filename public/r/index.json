@@ -139,6 +139,15 @@
       ]
     },
     {
+      "name": "evil-eye-button",
+      "type": "registry:ui",
+      "title": "EvilEyeButton",
+      "description": "A button with a React Bits evil eye shader background and a fiery readable label.",
+      "files": [
+        "components/evil-buttons/evil-eye-button.tsx"
+      ]
+    },
+    {
       "name": "troll-button",
       "type": "registry:ui",
       "title": "TrollButton",
