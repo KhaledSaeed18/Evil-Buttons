@@ -1,15 +1,21 @@
-import type { Metadata } from "next";
-import { LandingPage } from "@/components/landing/landing-page";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = {
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    url: "/",
-  },
-};
+// import type { Metadata } from "next";
+// import { LandingPage } from "@/components/landing/landing-page";
+//
+// export const metadata: Metadata = {
+//   alternates: {
+//     canonical: "/",
+//   },
+//   openGraph: {
+//     url: "/",
+//   },
+// };
+//
+// export default function HomePage() {
+//   return <LandingPage />;
+// }
 
 export default function HomePage() {
-  return <LandingPage />;
+  redirect("/docs");
 }
