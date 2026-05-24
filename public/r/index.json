@@ -164,6 +164,15 @@
       "files": [
         "components/evil-buttons/chrome-button.tsx"
       ]
+    },
+    {
+      "name": "brutal-button",
+      "type": "registry:ui",
+      "title": "BrutalButton",
+      "description": "A NeoBrutalism style button with sharp shadows and stark borders.",
+      "files": [
+        "components/evil-buttons/brutal-button.tsx"
+      ]
     }
   ]
 }

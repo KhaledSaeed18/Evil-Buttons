@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "brutal-button",
+  "type": "registry:ui",
+  "title": "BrutalButton",
+  "description": "A NeoBrutalism style button with sharp shadows and stark borders.",
+  "files": [
+    {
+      "path": "components/evil-buttons/brutal-button.tsx",
+      "type": "registry:ui",
+      "target": "components/evil-buttons/brutal-button.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface BrutalButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  color?: string;\n  textColor?: string;\n  hasBorder?: boolean;\n  borderColor?: string;\n  hasShadow?: boolean;\n  shadowColor?: string;\n  radius?: number;\n}\n\nexport const BrutalButton = React.forwardRef<HTMLButtonElement, BrutalButtonProps>(\n  (\n    {\n      className,\n      color,\n      textColor,\n      hasBorder = true,\n      borderColor,\n      hasShadow = true,\n      shadowColor,\n      radius = 0,\n      children,\n      style,\n      ...props\n    },\n    ref\n  ) => {\n    const customStyles = {\n      \"--btn-bg\": color || \"var(--background)\",\n      \"--btn-text\": textColor || \"var(--foreground)\",\n      \"--btn-border\": hasBorder ? borderColor || \"var(--foreground)\" : \"transparent\",\n      \"--btn-shadow\": shadowColor || \"var(--foreground)\",\n      \"--btn-radius\": `${radius}px`,\n      ...style,\n    } as React.CSSProperties;\n\n    return (\n      <button\n        ref={ref}\n        className={cn(\n          \"inline-flex items-center justify-center px-6 py-3 font-bold transition-all duration-200 ease-in-out\",\n          hasBorder ? \"border-2\" : \"border-0\",\n          hasShadow\n            ? \"shadow-[4px_4px_0px_var(--btn-shadow)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_var(--btn-shadow)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none\"\n            : \"active:scale-95\",\n          className\n        )}\n        style={{\n          backgroundColor: \"var(--btn-bg)\",\n          color: \"var(--btn-text)\",\n          borderColor: \"var(--btn-border)\",\n          borderRadius: \"var(--btn-radius)\",\n          ...customStyles,\n        }}\n        {...props}\n      >\n        {children}\n      </button>\n    );\n  }\n);\n\nBrutalButton.displayName = \"BrutalButton\";"
+    }
+  ],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ]
+}

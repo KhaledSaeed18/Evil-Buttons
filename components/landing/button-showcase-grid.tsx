@@ -11,6 +11,7 @@ import DitherButton from "@/components/evil-buttons/dither-button";
 import EvilEyeButton from "@/components/evil-buttons/evil-eye-button";
 import TrollButton from "@/components/evil-buttons/troll-button";
 import ChromeButton from "@/components/evil-buttons/chrome-button";
+import { BrutalButton } from "@/components/evil-buttons/brutal-button";
 import { PatternSeparator } from "@/components/landing/pattern-separator";
 import {
   buttonShowcaseItems,
@@ -40,6 +41,7 @@ const buttonRenderers: Record<string, ButtonRenderer> = {
   "chrome-button": (label) => (
     <ChromeButton>{label}</ChromeButton>
   ),
+  "brutal-button": (label) => <BrutalButton className="m-4">{label}</BrutalButton>,
 };
 
 export function ButtonShowcaseGrid() {

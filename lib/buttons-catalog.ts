@@ -17,6 +17,7 @@ export const buttonShowcaseItems: ButtonShowcaseItem[] = [
   { name: "EvilEyeButton", slug: "evil-eye-button", label: "I SEE YOU" },
   { name: "TrollButton", slug: "troll-button", label: "Catch Me" },
   { name: "ChromeButton", slug: "chrome-button", label: "Deploy Doom" },
+  { name: "BrutalButton", slug: "brutal-button", label: "Deploy Doom" },
 ];
 
 export type ButtonRenderer = (label: string) => ReactNode;
