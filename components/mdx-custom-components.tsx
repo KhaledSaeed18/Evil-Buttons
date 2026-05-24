@@ -24,6 +24,7 @@ import DitherButton from "./evil-buttons/dither-button";
 import EvilEyeButton from "./evil-buttons/evil-eye-button";
 import TrollButton from "./evil-buttons/troll-button";
 import ChromeButton from "./evil-buttons/chrome-button";
+import { BrutalButton } from "./evil-buttons/brutal-button";
 
 type CmdProps = {
   children: ReactNode;
@@ -109,5 +110,6 @@ export function getCustomMDXComponents(): MDXComponents {
     Link,
     TrollButton,
     ChromeButton,
+    BrutalButton,
   };
 }
