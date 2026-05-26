@@ -25,6 +25,7 @@ import EvilEyeButton from "./evil-buttons/evil-eye-button";
 import TrollButton from "./evil-buttons/troll-button";
 import ChromeButton from "./evil-buttons/chrome-button";
 import { BrutalButton } from "./evil-buttons/brutal-button";
+import { AquaButton } from "./evil-buttons/aqua-button";
 
 type CmdProps = {
   children: ReactNode;
@@ -111,5 +112,6 @@ export function getCustomMDXComponents(): MDXComponents {
     TrollButton,
     ChromeButton,
     BrutalButton,
+    AquaButton,
   };
 }

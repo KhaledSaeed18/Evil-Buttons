@@ -85,6 +85,10 @@ const brutalButtonSource = await readFile(
   resolve(root, "components/evil-buttons/brutal-button.tsx"),
   "utf8",
 );
+const aquaButtonSource = await readFile(
+  resolve(root, "components/evil-buttons/aqua-button.tsx"),
+  "utf8",
+);
 
 const clickPowerupItem = {
   $schema: "https://ui.shadcn.com/schema/registry-item.json",
@@ -435,6 +439,24 @@ const brutalButtonItem = {
   dependencies: ["clsx", "tailwind-merge"],
 };
 
+const aquaButtonItem = {
+  $schema: "https://ui.shadcn.com/schema/registry-item.json",
+  name: "aqua-button",
+  type: "registry:ui",
+  title: "AquaButton",
+  description:
+    "A glossy pill button inspired by Apple's Aqua interface, with layered highlights and a soft inner glow.",
+  files: [
+    {
+      path: "components/evil-buttons/aqua-button.tsx",
+      type: "registry:ui",
+      target: "components/evil-buttons/aqua-button.tsx",
+      content: aquaButtonSource,
+    },
+  ],
+  dependencies: ["clsx", "tailwind-merge"],
+};
+
 const index = {
   $schema: "https://ui.shadcn.com/schema/registry.json",
   name: "evil-buttons",
@@ -592,6 +614,14 @@ const index = {
         "A NeoBrutalism style button with sharp shadows and stark borders.",
       files: ["components/evil-buttons/brutal-button.tsx"],
     },
+    {
+      name: "aqua-button",
+      type: "registry:ui",
+      title: "AquaButton",
+      description:
+        "A glossy pill button inspired by Apple's Aqua interface, with layered highlights and a soft inner glow.",
+      files: ["components/evil-buttons/aqua-button.tsx"],
+    },
   ],
 };
 
@@ -692,6 +722,11 @@ await writeFile(
   "utf8",
 );
 await writeFile(
+  resolve(registryDir, "aqua-button.json"),
+  `${JSON.stringify(aquaButtonItem, null, 2)}\n`,
+  "utf8",
+);
+await writeFile(
   registryIndexPath,
   `${JSON.stringify(index, null, 2)}\n`,
   "utf8",
@@ -718,3 +753,4 @@ console.log("- public/r/evil-eye-button.json");
 console.log("- public/r/troll-button.json");
 console.log("- public/r/chrome-button.json");
 console.log("- public/r/brutal-button.json");
+console.log("- public/r/aqua-button.json");

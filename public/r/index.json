@@ -173,6 +173,15 @@
       "files": [
         "components/evil-buttons/brutal-button.tsx"
       ]
+    },
+    {
+      "name": "aqua-button",
+      "type": "registry:ui",
+      "title": "AquaButton",
+      "description": "A glossy pill button inspired by Apple's Aqua interface, with layered highlights and a soft inner glow.",
+      "files": [
+        "components/evil-buttons/aqua-button.tsx"
+      ]
     }
   ]
 }
