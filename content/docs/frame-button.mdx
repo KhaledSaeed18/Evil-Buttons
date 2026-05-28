@@ -1,0 +1,91 @@
+---
+title: FrameButton
+description: A futuristic button with animated corner frames and tactile motion interactions.
+---
+
+FrameButton is a futuristic button with animated corner frames and tactile motion interactions.
+
+## Preview
+
+<PreviewCard title="Frame Button" note="Interactive">
+  <FrameButton variant="outline">Get Started</FrameButton>
+</PreviewCard>
+
+
+## Variants
+
+### `default`
+
+<PreviewCard title="Frame Button" note="Interactive">
+  <FrameButton>Get Started</FrameButton>
+</PreviewCard>
+
+### `secondary`
+
+<PreviewCard title="Frame Button" note="Interactive">
+  <FrameButton variant="secondary">Get Started</FrameButton>
+</PreviewCard>
+
+### `outline`
+
+<PreviewCard title="Frame Button" note="Interactive">
+  <FrameButton variant="outline">Get Started</FrameButton>
+</PreviewCard>
+
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/frame-button</Cmd>
+
+## Usage
+
+### Button
+
+```tsx
+import { FrameButton } from "@/components/evil-buttons/frame-button";
+
+export function ButtonDemo() {
+  return (
+    <FrameButton>
+      Get Started
+    </FrameButton>
+  );
+}
+```
+
+### Link
+
+```tsx
+import { FrameButton } from "@/components/evil-buttons/frame-button";
+
+export function ButtonDemo() {
+  return (
+    <FrameButton as="link" href="https://github.com/radiumcoders/evil-buttons">
+      Star on GitHub
+    </FrameButton>
+  );
+}
+```
+
+## Props
+
+The component spreads any `<button>` HTML attributes.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `React.ReactNode` | — | The button content. |
+| `variant` | `"default" \| "secondary" \| "outline"` | `"default"` | Visual style variant of the button. |
+| `className` | `string` | — | Additional custom class names. |
+| `glow` | `boolean` | `false` | Enables the glow effect on hover. |
+| `size` | `number \| string` | `20` | Size of the frame corner markers. |
+| `offset` | `number` | `7.5` | Distance of the corner markers from the button edges. |
+| `hoverOffset` | `number` | `7` | Movement distance of corner markers on hover. |
+| `as` | `"button" \| "link"` | `"button"` | Renders the component as a button or link. |
+| `href` | `Route \| UrlObject` | — | Link destination when `as="link"` is used. |
+
+
+## Registry
+
+The registry item includes `components/evil-buttons/frame-button.tsx`, installs `clsx` and `tailwind-merge`, and `motion` as a registry dependency.

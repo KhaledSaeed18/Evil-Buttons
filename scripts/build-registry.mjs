@@ -90,6 +90,11 @@ const aquaButtonSource = await readFile(
   "utf8",
 );
 
+const frameButtonSource = await readFile(
+  resolve(root, "components/evil-buttons/frame-button.tsx"),
+  "utf8",
+);
+
 const clickPowerupItem = {
   $schema: "https://ui.shadcn.com/schema/registry-item.json",
   name: "click-powerup",
@@ -457,6 +462,24 @@ const aquaButtonItem = {
   dependencies: ["clsx", "tailwind-merge"],
 };
 
+const frameButtonItem = {
+  $schema: "https://ui.shadcn.com/schema/registry-item.json",
+  name: "frame-button",
+  type: "registry:ui",
+  title: "FrameButton",
+  description:
+    "A futuristic button with animated corner frames and tactile motion interactions.",
+  files: [
+    {
+      path: "components/evil-buttons/frame-button.tsx",
+      type: "registry:ui",
+      target: "components/evil-buttons/frame-button.tsx",
+      content: frameButtonSource,
+    },
+  ],
+  dependencies: ["clsx", "tailwind-merge", "motion"],
+};
+
 const index = {
   $schema: "https://ui.shadcn.com/schema/registry.json",
   name: "evil-buttons",
@@ -622,6 +645,7 @@ const index = {
         "A glossy pill button inspired by Apple's Aqua interface, with layered highlights and a soft inner glow.",
       files: ["components/evil-buttons/aqua-button.tsx"],
     },
+    frameButtonItem,
   ],
 };
 
@@ -754,3 +778,4 @@ console.log("- public/r/troll-button.json");
 console.log("- public/r/chrome-button.json");
 console.log("- public/r/brutal-button.json");
 console.log("- public/r/aqua-button.json");
+console.log("- public/r/frame-button.json");
