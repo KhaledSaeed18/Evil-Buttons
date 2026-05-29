@@ -1,0 +1,85 @@
+---
+title: HighlightButton
+description: A button with a mouse-following highlight that darkens light surfaces and expands on click.
+---
+
+## Preview
+
+<PreviewCard title="HighlightButton" note="Interactive">
+  <div className="flex gap-4">
+    <HighlightButton>Hover Me</HighlightButton>
+    <HighlightButton variant="secondary">Click Me</HighlightButton>
+  </div>
+</PreviewCard>
+
+### Custom Colors
+
+<PreviewCard title="Custom Colors" note="Interactive">
+  <div className="flex gap-4">
+    <HighlightButton
+      highlightColor="rgba(59, 130, 246, 0.65)"
+      borderColor="rgba(59, 130, 246, 0.8)"
+    >
+      Blue Glow
+    </HighlightButton>
+    <HighlightButton
+      highlightColor="rgba(168, 85, 247, 0.65)"
+      borderColor="rgba(168, 85, 247, 0.8)"
+    >
+      Purple Glow
+    </HighlightButton>
+    <HighlightButton
+      highlightColor="rgba(34, 197, 94, 0.65)"
+      borderColor="rgba(34, 197, 94, 0.8)"
+    >
+      Green Glow
+    </HighlightButton>
+  </div>
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/highlight-button</Cmd>
+
+## Usage
+
+```tsx
+import { HighlightButton } from "@/components/evil-buttons/highlight-button";
+
+export function ButtonDemo() {
+  return (
+    <HighlightButton>Click Me</HighlightButton>
+  );
+}
+
+export function CustomColorsDemo() {
+  return (
+    <HighlightButton
+      highlightColor="rgba(59, 130, 246, 0.65)"
+      borderColor="rgba(59, 130, 246, 0.8)"
+    >
+      Blue Glow
+    </HighlightButton>
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `variant` | `"default" \| "outline" \| "secondary" \| "ghost" \| "destructive" \| "link"` | `"default"` | Button variant style. |
+| `size` | `"default" \| "xs" \| "sm" \| "lg" \| "icon" \| "icon-xs" \| "icon-sm" \| "icon-lg"` | `"default"` | Button size. |
+| `highlightColor` | `string` | `"color-mix(in oklab, currentColor 55%, transparent)"` | Color of the mouse-following highlight and click ripple. |
+| `highlightSize` | `number` | `56` | Diameter of the highlight glow in pixels. |
+| `borderColor` | `string` | `"color-mix(in oklab, currentColor 58%, transparent)"` | Border color when hovering. |
+| `className` | `string` | - | Extra classes passed to the button. |
+| `children` | `React.ReactNode` | - | The visible button label or content. |
+
+All other `<button>` attributes (`onClick`, `disabled`, `type`, etc.) are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/highlight-button.tsx` and installs `clsx` and `tailwind-merge` as dependencies. The component imports `cn` from `@/lib/utils`.
