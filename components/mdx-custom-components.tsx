@@ -16,6 +16,7 @@ import ChromeButton from "./evil-buttons/chrome-button";
 import { BrutalButton } from "./evil-buttons/brutal-button";
 import { AquaButton } from "./evil-buttons/aqua-button";
 import { FrameButton } from "./evil-buttons/frame-button";
+import { HighlightButton } from "./evil-buttons/highlight-button";
 
 
 type CmdProps = {
@@ -96,5 +97,6 @@ export function getCustomMDXComponents(): MDXComponents {
     BrutalButton,
     AquaButton,
     FrameButton,
+    HighlightButton,
   };
 }
