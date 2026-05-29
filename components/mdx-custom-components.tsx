@@ -1,25 +1,14 @@
 import { CliBlock } from "@/components/cli-block";
 import { CodeBlock } from "@/components/code-block";
 import { ClickPowerUp } from "@/components/evil-buttons/click-powerup";
-import TanStackLogo from "@/components/evil-buttons/logo/tanstack";
-import VercelLogo from "@/components/evil-buttons/logo/vercel";
 import MinimalButton from "@/components/evil-buttons/minimal";
 import StickyButton from "@/components/evil-buttons/sticky";
 import { PreviewCard } from "@/components/preview-card";
-import {
-  ScrollBarsPreview,
-  ScrollBarsVerticalPreview,
-} from "@/components/scroll-bars-preview";
 import type { MDXComponents } from "mdx/types";
 import { isValidElement, type ReactNode } from "react";
-import ShadcnLogo from "./evil-buttons/logo/shadcn";
 import MoviePassButton from "./evil-buttons/movie-pass";
 import ShinyButton from "./evil-buttons/shiny-button";
 import GridButton from "./evil-buttons/grid-button";
-import SunDimIcon from "./evil-buttons/icons/sun-dim";
-import MoonIcon from "./evil-buttons/icons/moon";
-import SparkBurstIcon from "./evil-buttons/icons/spark-burst";
-import CloudBlocksIcon from "./evil-buttons/icons/cloud-blocks";
 import DitherButton from "./evil-buttons/dither-button";
 import EvilEyeButton from "./evil-buttons/evil-eye-button";
 import TrollButton from "./evil-buttons/troll-button";
@@ -97,17 +86,8 @@ export function getCustomMDXComponents(): MDXComponents {
     ShinyButton,
     MoviePassButton,
     MinimalButton,
-    VercelLogo,
-    ShadcnLogo,
-    TanStackLogo,
-    ScrollBarsPreview: ScrollBarsPreview,
-    ScrollBarsVerticalPreview: ScrollBarsVerticalPreview,
     EvilButton: ClickPowerUp,
     GridButton,
-    SunDimIcon,
-    MoonIcon,
-    SparkBurstIcon,
-    CloudBlocksIcon,
     DitherButton,
     EvilEyeButton,
     Link,

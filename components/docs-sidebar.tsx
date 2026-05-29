@@ -19,9 +19,6 @@ type DocsNavPage = {
 
 type DocsSidebarProps = {
   componentPages: DocsNavPage[];
-  iconPages: DocsNavPage[];
-  logoPages: DocsNavPage[];
-  scrollBarsPages: DocsNavPage[];
   brand: ReactNode;
 };
 
@@ -76,18 +73,11 @@ function DocsNavGroup({
 
 export function DocsSidebar({
   componentPages,
-  iconPages,
-  logoPages,
-  scrollBarsPages,
   brand,
 }: DocsSidebarProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const defaultPageUrl =
-    componentPages[0]?.url ??
-    iconPages[0]?.url ??
-    scrollBarsPages[0]?.url ??
-    logoPages[0]?.url;
+  const defaultPageUrl = componentPages[0]?.url;
 
   useEffect(() => {
     const rafId = window.requestAnimationFrame(() => {
@@ -149,21 +139,6 @@ export function DocsSidebar({
           <DocsNavGroup
             title="Buttons"
             pages={componentPages}
-            defaultPageUrl={defaultPageUrl}
-          />
-          <DocsNavGroup
-            title="8-Bit Icons"
-            pages={iconPages}
-            defaultPageUrl={defaultPageUrl}
-          />
-          <DocsNavGroup
-            title="Scroll Bars"
-            pages={scrollBarsPages}
-            defaultPageUrl={defaultPageUrl}
-          />
-          <DocsNavGroup
-            title="Logos"
-            pages={logoPages}
             defaultPageUrl={defaultPageUrl}
           />
         </div>

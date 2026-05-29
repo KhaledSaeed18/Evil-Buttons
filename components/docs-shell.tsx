@@ -12,26 +12,17 @@ type DocsNavPage = {
 type DocsShellProps = {
   children: ReactNode;
   componentPages: DocsNavPage[];
-  iconPages: DocsNavPage[];
-  logoPages: DocsNavPage[];
-  scrollBarsPages: DocsNavPage[];
 };
 
 export function DocsShell({
   children,
   componentPages,
-  iconPages,
-  logoPages,
-  scrollBarsPages,
 }: DocsShellProps) {
   return (
     <div className="flex h-dvh overflow-hidden bg-background text-foreground">
       <ThemeSync />
       <DocsSidebar
         componentPages={componentPages}
-        iconPages={iconPages}
-        logoPages={logoPages}
-        scrollBarsPages={scrollBarsPages}
         brand={
           <Link
             href="/"
