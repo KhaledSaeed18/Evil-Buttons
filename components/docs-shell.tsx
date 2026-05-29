@@ -19,7 +19,7 @@ export function DocsShell({
   componentPages,
 }: DocsShellProps) {
   return (
-    <div className="flex h-dvh overflow-hidden bg-background text-foreground">
+    <div className="flex h-dvh overflow-hidden dark:bg-[#090b0c] bg-background text-foreground">
       <ThemeSync />
       <DocsSidebar
         componentPages={componentPages}
@@ -39,7 +39,7 @@ export function DocsShell({
           </Link>
         }
       />
-      <div className="min-w-0 flex-1 overflow-hidden border-border md:border-l">
+      <div className="min-w-0 flex-1 overflow-hidden dark:bg-#161b1d bg-background m-2 rounded border-border md:border">
         <div className="h-full min-w-0 overflow-y-auto">{children}</div>
       </div>
     </div>
