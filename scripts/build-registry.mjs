@@ -59,6 +59,10 @@ const frameButtonSource = await readFile(
   resolve(root, "components/evil-buttons/frame-button.tsx"),
   "utf8",
 );
+const highlightButtonSource = await readFile(
+  resolve(root, "components/evil-buttons/highlight-button.tsx"),
+  "utf8",
+);
 
 const clickPowerupItem = {
   $schema: "https://ui.shadcn.com/schema/registry-item.json",
@@ -301,6 +305,25 @@ const frameButtonItem = {
   dependencies: ["clsx", "tailwind-merge", "motion"],
 };
 
+const highlightButtonItem = {
+  $schema: "https://ui.shadcn.com/schema/registry-item.json",
+  name: "highlight-button",
+  type: "registry:ui",
+  title: "HighlightButton",
+  description:
+    "A button with a mouse-following highlight that darkens light surfaces and expands on click.",
+  files: [
+    {
+      path: "components/evil-buttons/highlight-button.tsx",
+      type: "registry:ui",
+      target: "components/evil-buttons/highlight-button.tsx",
+      content: highlightButtonSource,
+    },
+  ],
+  registryDependencies: ["button"],
+  dependencies: ["clsx", "tailwind-merge"],
+};
+
 const index = {
   $schema: "https://ui.shadcn.com/schema/registry.json",
   name: "evil-buttons",
@@ -410,6 +433,14 @@ const index = {
         "A futuristic button with animated corner frames and tactile motion interactions.",
       files: ["components/evil-buttons/frame-button.tsx"],
     },
+    {
+      name: "highlight-button",
+      type: "registry:ui",
+      title: "HighlightButton",
+      description:
+        "A button with a mouse-following highlight that darkens light surfaces and expands on click.",
+      files: ["components/evil-buttons/highlight-button.tsx"],
+    },
   ],
 };
 
@@ -480,6 +511,11 @@ await writeFile(
   "utf8",
 );
 await writeFile(
+  resolve(registryDir, "highlight-button.json"),
+  `${JSON.stringify(highlightButtonItem, null, 2)}\n`,
+  "utf8",
+);
+await writeFile(
   resolve(registryDir, "index.json"),
   `${JSON.stringify(index, null, 2)}\n`,
   "utf8",
@@ -500,3 +536,4 @@ console.log("- public/r/chrome-button.json");
 console.log("- public/r/brutal-button.json");
 console.log("- public/r/aqua-button.json");
 console.log("- public/r/frame-button.json");
+console.log("- public/r/highlight-button.json");

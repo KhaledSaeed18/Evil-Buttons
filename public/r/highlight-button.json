@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "highlight-button",
+  "type": "registry:ui",
+  "title": "HighlightButton",
+  "description": "A button with a mouse-following highlight that darkens light surfaces and expands on click.",
+  "files": [
+    {
+      "path": "components/evil-buttons/highlight-button.tsx",
+      "type": "registry:ui",
+      "target": "components/evil-buttons/highlight-button.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { Button, type buttonVariants } from \"@/components/ui/button\"\nimport type { VariantProps } from \"class-variance-authority\"\n\ninterface HighlightButtonProps\n  extends React.ComponentProps<\"button\">,\n    VariantProps<typeof buttonVariants> {\n  asChild?: boolean\n  highlightColor?: string\n  highlightSize?: number\n  borderColor?: string\n}\n\nfunction HighlightButton({\n  className,\n  variant = \"default\",\n  size = \"default\",\n  asChild = false,\n  highlightColor = \"color-mix(in oklab, currentColor 55%, transparent)\",\n  highlightSize = 56,\n  borderColor = \"color-mix(in oklab, currentColor 58%, transparent)\",\n  children,\n  onClick,\n  ...props\n}: HighlightButtonProps) {\n  const buttonRef = React.useRef<HTMLButtonElement>(null)\n  const [position, setPosition] = React.useState({ x: 0, y: 0 })\n  const [isHovering, setIsHovering] = React.useState(false)\n  const [isClicked, setIsClicked] = React.useState(false)\n  const [clickPosition, setClickPosition] = React.useState({ x: 0, y: 0 })\n\n  const handleMouseMove = React.useCallback(\n    (e: React.MouseEvent<HTMLButtonElement>) => {\n      if (!buttonRef.current || isClicked) return\n      const rect = buttonRef.current.getBoundingClientRect()\n      setPosition({\n        x: e.clientX - rect.left,\n        y: e.clientY - rect.top,\n      })\n    },\n    [isClicked]\n  )\n\n  const handleMouseEnter = React.useCallback(() => {\n    setIsHovering(true)\n  }, [])\n\n  const handleMouseLeave = React.useCallback(() => {\n    setIsHovering(false)\n    setIsClicked(false)\n  }, [])\n\n  const handleClick = React.useCallback(\n    (e: React.MouseEvent<HTMLButtonElement>) => {\n      if (!buttonRef.current) return\n      const rect = buttonRef.current.getBoundingClientRect()\n      const x = e.clientX - rect.left\n      const y = e.clientY - rect.top\n      setClickPosition({ x, y })\n      setIsClicked(true)\n      onClick?.(e)\n    },\n    [onClick]\n  )\n\n  return (\n    <Button\n      ref={buttonRef}\n      variant={variant}\n      size={size}\n      asChild={asChild}\n      className={cn(\n        \"relative overflow-hidden px-6 py-5 shadow-sm transition-[border-color,box-shadow,transform]\",\n        className\n      )}\n      onMouseMove={handleMouseMove}\n      onMouseEnter={handleMouseEnter}\n      onMouseLeave={handleMouseLeave}\n      onClick={handleClick}\n      style={{\n        borderColor: isHovering ? borderColor : undefined,\n        borderWidth: isHovering ? \"1px\" : undefined,\n      }}\n      {...props}\n    >\n      {isHovering && !isClicked && (\n        <div\n          className=\"pointer-events-none absolute rounded-full transition-transform duration-100 ease-out\"\n          style={{\n            left: position.x,\n            top: position.y,\n            width: highlightSize,\n            height: highlightSize,\n            backgroundColor: highlightColor,\n            transform: \"translate(-50%, -50%)\",\n            opacity: isHovering ? 1 : 0,\n            filter: \"blur(24px)\",\n          }}\n        />\n      )}\n\n      <div className=\"pointer-events-none absolute inset-0 rounded-md bg-current/[0.04]\" />\n\n      {isClicked && (\n        <div\n          className=\"pointer-events-none absolute rounded-full\"\n          style={{\n            left: clickPosition.x,\n            top: clickPosition.y,\n            backgroundColor: highlightColor,\n            transform: \"translate(-50%, -50%)\",\n            animation: \"highlight-button-ripple 0.6s ease-out forwards\",\n          }}\n        />\n      )}\n\n      <span className=\"relative z-10 inline-flex items-center justify-center text-inherit [&>p]:!m-0 [&>p]:!inline [&>p]:!text-sm [&>p]:!font-medium [&>p]:!leading-none [&>p]:!text-inherit\">\n        {children}\n      </span>\n    </Button>\n  )\n}\n\nexport { HighlightButton, type HighlightButtonProps }\n"
+    }
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ]
+}

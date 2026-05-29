@@ -119,6 +119,15 @@
       "files": [
         "components/evil-buttons/frame-button.tsx"
       ]
+    },
+    {
+      "name": "highlight-button",
+      "type": "registry:ui",
+      "title": "HighlightButton",
+      "description": "A button with a mouse-following highlight that darkens light surfaces and expands on click.",
+      "files": [
+        "components/evil-buttons/highlight-button.tsx"
+      ]
     }
   ]
 }
