@@ -58,6 +58,21 @@ function joinList(value) {
     : [];
 }
 
+function formatInlineList(items) {
+  if (items.length === 1) {
+    return `\`${items[0]}\``;
+  }
+
+  if (items.length === 2) {
+    return `\`${items[0]}\` and \`${items[1]}\``;
+  }
+
+  return `${items
+    .slice(0, -1)
+    .map((item) => `\`${item}\``)
+    .join(", ")}, and \`${items.at(-1)}\``;
+}
+
 function quoteYaml(value) {
   return JSON.stringify(value);
 }
@@ -66,13 +81,11 @@ function dependencySentence(deps, registryDeps) {
   const parts = [];
 
   if (deps.length > 0) {
-    parts.push(`installs ${deps.map((dep) => `\`${dep}\``).join(", ")} as dependencies`);
+    parts.push(`installs ${formatInlineList(deps)} as dependencies`);
   }
 
   if (registryDeps.length > 0) {
-    parts.push(
-      `uses ${registryDeps.map((dep) => `\`${dep}\``).join(", ")} as registry dependencies`,
-    );
+    parts.push(`uses ${formatInlineList(registryDeps)} as registry dependencies`);
   }
 
   return parts.length > 0 ? ` and ${parts.join(" and ")}` : "";
@@ -104,7 +117,7 @@ title: ${quoteYaml(title)}
 description: ${quoteYaml(description)}
 ---
 
-${title} ${description.charAt(0).toLowerCase()}${description.slice(1)}
+${title} is ${description.charAt(0).toLowerCase()}${description.slice(1)}
 
 ## Preview
 
