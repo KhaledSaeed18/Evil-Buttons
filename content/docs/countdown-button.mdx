@@ -1,0 +1,70 @@
+---
+title: CountdownButton
+description: A button with a cooldown timer — fires once, then disables itself with a live countdown until re-enabled.
+badge: New
+---
+
+CountdownButton wraps any rate-limited action — OTP resend, message retry, cooldown gates — in a single interactive button. The progress bar fills as the cooldown elapses, the label switches to a formatted countdown, and the button auto-re-enables when the timer hits zero.
+
+## Preview
+
+<PreviewCard title="CountdownButton" note="Click to start a 5s cooldown">
+  <CountdownButton cooldownSeconds={5} idleLabel="Resend code" />
+</PreviewCard>
+
+### Custom format
+
+<PreviewCard title="Custom Format" note="Click to start">
+  <CountdownCustomFormatDemo />
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/countdown-button</Cmd>
+
+## Usage
+
+```tsx
+import { CountdownButton } from "@/components/evil-buttons/countdown-button";
+
+export function ResendCode() {
+  return (
+    <CountdownButton
+      cooldownSeconds={30}
+      idleLabel="Resend code"
+      onTrigger={() => sendOtp()}
+      onComplete={() => console.log("cooldown done")}
+    />
+  );
+}
+```
+
+### Auto-start on mount
+
+For rate-limit gates where the cooldown begins on render:
+
+```tsx
+<CountdownButton autoStart cooldownSeconds={60} idleLabel="Submit" />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `cooldownSeconds` | `number` | `30` | Length of the cooldown after each trigger. |
+| `autoStart` | `boolean` | `false` | Start the cooldown on mount instead of on click. |
+| `idleLabel` | `React.ReactNode` | `"Resend code"` | Label shown when the button is clickable. |
+| `readyLabel` | `React.ReactNode` | `"Ready"` | Label flashed briefly when the cooldown completes. |
+| `readyDuration` | `number` | `900` | How long the success flash lasts before returning to idle, in milliseconds. |
+| `formatCooldown` | `(seconds: number) => React.ReactNode` | `"Wait m:ss"` | Format the countdown label. |
+| `onTrigger` | `(e) => void \| Promise<unknown>` | – | Fired on click before the cooldown starts. |
+| `onComplete` | `() => void` | – | Fired when the cooldown reaches zero. |
+| `className` | `string` | – | Extra classes passed to the button. |
+
+All other `<button>` attributes are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/countdown-button.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies. The component imports `cn` from `@/lib/utils`.

@@ -1,0 +1,57 @@
+---
+title: SplitActionButton
+description: A primary action button with an animated menu for alternate actions.
+badge: New
+---
+
+SplitActionButton is useful when one action is dominant but users still need nearby alternatives, like publish, save draft, or schedule. The primary side stays fast while the chevron opens a compact menu.
+
+## Preview
+
+<PreviewCard title="SplitActionButton" note="Open menu">
+  <SplitActionButtonDemo />
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/split-action-button</Cmd>
+
+## Usage
+
+```tsx
+import { SplitActionButton } from "@/components/evil-buttons/split-action-button";
+
+export function PublishActions() {
+  return (
+    <SplitActionButton
+      label="Publish"
+      onPrimary={() => publishNow()}
+      onSelect={(value) => runAction(value)}
+      items={[
+        { label: "Save draft", value: "draft", description: "Keep private" },
+        { label: "Schedule", value: "schedule", description: "Pick a time" },
+        { label: "Publish now", value: "publish", description: "Go live" },
+      ]}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `label` | `React.ReactNode` | `"Publish"` | Primary action label. |
+| `items` | `SplitActionItem[]` | publish options | Menu actions. |
+| `onPrimary` | `() => void` | - | Called by the primary button. |
+| `onSelect` | `(value: string) => void` | - | Called when a menu item is selected. |
+| `align` | `"left" \| "right"` | `"right"` | Menu alignment. |
+| `disabled` | `boolean` | `false` | Disables both buttons. |
+
+All other wrapper `<div>` attributes are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/split-action-button.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies.

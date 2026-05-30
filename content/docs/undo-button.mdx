@@ -1,0 +1,59 @@
+---
+title: UndoButton
+description: A reversible action button that gives users a short undo window before committing.
+badge: New
+---
+
+UndoButton is useful for archive, delete, remove, and dismiss actions where a fast action should still be recoverable. The action enters a pending state, shows an undo affordance, and only calls `onCommit` after the timer expires.
+
+## Preview
+
+<PreviewCard title="UndoButton" note="Click, then undo">
+  <UndoButtonDemo />
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/undo-button</Cmd>
+
+## Usage
+
+```tsx
+import { UndoButton } from "@/components/evil-buttons/undo-button";
+
+export function ArchiveAction() {
+  return (
+    <UndoButton
+      idleLabel="Archive"
+      pendingLabel="Archived"
+      undoLabel="Undo"
+      undoWindow={5000}
+      onCommit={() => archiveItem()}
+      onUndo={() => restoreItem()}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `onCommit` | `() => void` | - | Called after the undo window expires. |
+| `onUndo` | `() => void` | - | Called when the user clicks during the pending undo state. |
+| `onClick` | `(e) => void` | - | Called when the initial action starts. |
+| `idleLabel` | `React.ReactNode` | `"Archive"` | Initial label. |
+| `pendingLabel` | `React.ReactNode` | `"Archived"` | Label shown during the undo window. |
+| `undoLabel` | `React.ReactNode` | `"Undo"` | Inline undo label. |
+| `committedLabel` | `React.ReactNode` | `"Done"` | Label shown after commit. |
+| `undoWindow` | `number` | `5000` | Milliseconds before commit. |
+| `resetAfter` | `number` | `1400` | Milliseconds before resetting after commit. |
+| `destructive` | `boolean` | `false` | Uses a destructive color treatment. |
+
+All other `<button>` attributes are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/undo-button.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies.

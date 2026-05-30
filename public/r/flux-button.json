@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "flux-button",
+  "type": "registry:ui",
+  "title": "FluxButton",
+  "description": "A button with a flowing animated color field — colors drift across the surface like a lava lamp or aurora.",
+  "files": [
+    {
+      "path": "components/evil-buttons/flux-button.tsx",
+      "type": "registry:ui",
+      "target": "components/evil-buttons/flux-button.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion } from \"motion/react\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface FluxButtonProps\n  extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  speed?: number;\n  colors?: string[];\n}\n\nconst DEFAULT_COLORS = [\n  \"#6366f1\", // indigo\n  \"#ec4899\", // pink\n  \"#06b6d4\", // cyan\n  \"#a855f7\", // purple\n  \"#6366f1\", // back to indigo\n];\n\nexport const FluxButton = React.forwardRef<\n  HTMLButtonElement,\n  FluxButtonProps\n>(\n  (\n    {\n      children = \"Flux\",\n      speed = 6,\n      colors = DEFAULT_COLORS,\n      className,\n      type = \"button\",\n      ...props\n    },\n    ref,\n  ) => {\n    const [hovered, setHovered] = React.useState(false);\n\n    return (\n      <button\n        ref={ref}\n        type={type}\n        onPointerEnter={() => setHovered(true)}\n        onPointerLeave={() => setHovered(false)}\n        onFocus={() => setHovered(true)}\n        onBlur={() => setHovered(false)}\n        className={cn(\n          \"group relative inline-flex items-center justify-center overflow-hidden rounded-md px-6 py-3 text-sm font-semibold text-white shadow-sm transition-shadow\",\n          \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring\",\n          \"hover:shadow-lg\",\n          className,\n        )}\n        {...props}\n      >\n        <span\n          aria-hidden\n          className=\"absolute inset-0 animate-flux bg-[length:300%_100%]\"\n          style={{\n            backgroundImage: `linear-gradient(90deg, ${colors.join(\", \")})`,\n            filter: \"saturate(1.2)\",\n            animationDuration: `${speed}s`,\n          }}\n        />\n        <motion.span\n          aria-hidden\n          animate={{\n            opacity: hovered ? 0.35 : 0.15,\n          }}\n          transition={{ duration: 0.3 }}\n          className=\"absolute inset-0 bg-white\"\n        />\n        <span\n          aria-hidden\n          className=\"absolute inset-0 opacity-30 mix-blend-overlay\"\n          style={{\n            backgroundImage:\n              \"repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255,255,255,0.08) 4px, rgba(255,255,255,0.08) 8px)\",\n          }}\n        />\n        <motion.span\n          animate={{\n            boxShadow: hovered\n              ? \"inset 0 1px 0 rgba(255,255,255,0.4)\"\n              : \"inset 0 1px 0 rgba(255,255,255,0.2)\",\n          }}\n          className=\"absolute inset-0 rounded-md\"\n        />\n        <span className=\"relative z-10 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]\">\n          {children}\n        </span>\n      </button>\n    );\n  },\n);\n\nFluxButton.displayName = \"FluxButton\";\n"
+    }
+  ],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ]
+}

@@ -1,0 +1,55 @@
+---
+title: FluxButton
+description: A button with a flowing, animated color field — colors drift across the surface like a lava lamp or aurora.
+---
+
+FluxButton uses a smooth animated gradient that sweeps across the button surface in a continuous loop. On hover, a subtle white overlay brightens the surface. A diagonal grid texture adds depth. Customize the color palette or speed to match your brand.
+
+## Preview
+
+<PreviewCard title="FluxButton" note="Animated gradient">
+  <FluxButtonDemo />
+</PreviewCard>
+
+### Custom palette
+
+<PreviewCard title="Sunset palette" note="Warm colors">
+  <FluxButtonCustomDemo />
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/flux-button</Cmd>
+
+## Usage
+
+```tsx
+import { FluxButton } from "@/components/evil-buttons/flux-button";
+
+export function BrandButton() {
+  return (
+    <FluxButton
+      speed={6}
+      colors={["#6366f1", "#ec4899", "#06b6d4", "#a855f7", "#6366f1"]}
+    >
+      Launch
+    </FluxButton>
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `speed` | `number` | `6` | Animation speed (lower = faster). |
+| `colors` | `string[]` | indigo → pink → cyan → purple | Gradient color stops that animate across the button. |
+| `children` | `React.ReactNode` | `"Flux"` | Button label. |
+
+All other `<button>` attributes are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/flux-button.tsx` and installs `clsx` and `tailwind-merge` as dependencies.

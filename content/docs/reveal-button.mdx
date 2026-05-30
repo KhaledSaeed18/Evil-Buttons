@@ -1,0 +1,63 @@
+---
+title: RevealButton
+description: A privacy-focused button for temporarily revealing sensitive values.
+badge: New
+---
+
+RevealButton works well for API keys, recovery codes, invite secrets, and account identifiers. It can reveal while held or toggle on click.
+
+## Preview
+
+<PreviewCard title="RevealButton" note="Hold to reveal">
+  <RevealButton secret="sk_live_8Jd92mQp0x" />
+</PreviewCard>
+
+## Toggle Mode
+
+<PreviewCard title="Toggle" note="Click to reveal">
+  <RevealButton
+    revealMode="toggle"
+    label="API key"
+    hiddenLabel="Hidden key"
+    secret="prod_7f91a0d4e2"
+  />
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/reveal-button</Cmd>
+
+## Usage
+
+```tsx
+import { RevealButton } from "@/components/evil-buttons/reveal-button";
+
+export function ApiKeyButton() {
+  return (
+    <RevealButton
+      secret="sk_live_8Jd92mQp0x"
+      revealMode="hold"
+      onRevealChange={(revealed) => console.log(revealed)}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `secret` | `React.ReactNode` | `"sk_live_••••_9xQ4"` | Value shown when revealed. |
+| `label` | `React.ReactNode` | `"Reveal"` | Small label when revealed. |
+| `hiddenLabel` | `React.ReactNode` | `"Hidden"` | Small label when hidden. |
+| `revealMode` | `"hold" \| "toggle"` | `"hold"` | Reveal while pressed or toggle by click. |
+| `maskedValue` | `string` | `"•••• •••• ••••"` | Hidden placeholder text. |
+| `onRevealChange` | `(revealed) => void` | - | Called when reveal state changes. |
+
+All other `<button>` attributes are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/reveal-button.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies.

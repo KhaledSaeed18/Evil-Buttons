@@ -128,6 +128,204 @@
       "files": [
         "components/evil-buttons/highlight-button.tsx"
       ]
+    },
+    {
+      "name": "copy-button",
+      "type": "registry:ui",
+      "title": "CopyButton",
+      "description": "A click-to-copy button with an animated clipboard → check icon morph and aria-live feedback.",
+      "files": [
+        "components/evil-buttons/copy-button.tsx"
+      ]
+    },
+    {
+      "name": "loading-button",
+      "type": "registry:ui",
+      "title": "LoadingButton",
+      "description": "A stateful submit button that animates through idle, loading, success, and error states.",
+      "files": [
+        "components/evil-buttons/loading-button.tsx"
+      ]
+    },
+    {
+      "name": "hold-to-confirm",
+      "type": "registry:ui",
+      "title": "HoldToConfirmButton",
+      "description": "A button that requires a sustained hold to confirm destructive actions.",
+      "files": [
+        "components/evil-buttons/hold-to-confirm.tsx"
+      ]
+    },
+    {
+      "name": "countdown-button",
+      "type": "registry:ui",
+      "title": "CountdownButton",
+      "description": "A button with a cooldown timer — fires once, then disables itself with a live countdown until re-enabled.",
+      "files": [
+        "components/evil-buttons/countdown-button.tsx"
+      ]
+    },
+    {
+      "name": "swipe-to-confirm",
+      "type": "registry:ui",
+      "title": "SwipeToConfirmButton",
+      "description": "An iOS-style swipe-to-confirm slider — drag the handle across to commit, release early to cancel.",
+      "files": [
+        "components/evil-buttons/swipe-to-confirm.tsx"
+      ]
+    },
+    {
+      "name": "shatter-button",
+      "type": "registry:ui",
+      "title": "ShatterButton",
+      "description": "A button that shatters into shards on click, scatters them outward, and reassembles itself.",
+      "files": [
+        "components/evil-buttons/shatter-button.tsx"
+      ]
+    },
+    {
+      "name": "undo-button",
+      "type": "registry:ui",
+      "title": "UndoButton",
+      "description": "A reversible action button that gives users a short undo window before committing.",
+      "files": [
+        "components/evil-buttons/undo-button.tsx"
+      ]
+    },
+    {
+      "name": "two-step-button",
+      "type": "registry:ui",
+      "title": "TwoStepButton",
+      "description": "A click-once-to-arm, click-again-to-confirm button for risky actions.",
+      "files": [
+        "components/evil-buttons/two-step-button.tsx"
+      ]
+    },
+    {
+      "name": "progress-button",
+      "type": "registry:ui",
+      "title": "ProgressButton",
+      "description": "A button that displays real task progress with idle, running, complete, and error states.",
+      "files": [
+        "components/evil-buttons/progress-button.tsx"
+      ]
+    },
+    {
+      "name": "command-button",
+      "type": "registry:ui",
+      "title": "CommandButton",
+      "description": "A keyboard-shortcut button that visually presses itself when its shortcut is used.",
+      "files": [
+        "components/evil-buttons/command-button.tsx"
+      ]
+    },
+    {
+      "name": "reveal-button",
+      "type": "registry:ui",
+      "title": "RevealButton",
+      "description": "A privacy-focused button for temporarily revealing sensitive values.",
+      "files": [
+        "components/evil-buttons/reveal-button.tsx"
+      ]
+    },
+    {
+      "name": "rate-limit-button",
+      "type": "registry:ui",
+      "title": "RateLimitButton",
+      "description": "A quota-aware action button with remaining-use pips and automatic cooldown refill.",
+      "files": [
+        "components/evil-buttons/rate-limit-button.tsx"
+      ]
+    },
+    {
+      "name": "smart-paste-button",
+      "type": "registry:ui",
+      "title": "SmartPasteButton",
+      "description": "A clipboard-aware paste button that validates pasted content and reports success or failure.",
+      "files": [
+        "components/evil-buttons/smart-paste-button.tsx"
+      ]
+    },
+    {
+      "name": "split-action-button",
+      "type": "registry:ui",
+      "title": "SplitActionButton",
+      "description": "A primary action button with an animated menu for alternate actions.",
+      "files": [
+        "components/evil-buttons/split-action-button.tsx"
+      ]
+    },
+    {
+      "name": "checkout-button",
+      "type": "registry:ui",
+      "title": "CheckoutButton",
+      "description": "A payment-style button that animates through processing, approved, and declined states.",
+      "files": [
+        "components/evil-buttons/checkout-button.tsx"
+      ]
+    },
+    {
+      "name": "reaction-button",
+      "type": "registry:ui",
+      "title": "ReactionButton",
+      "description": "A reaction button with count animation, pressed state, and a small particle burst.",
+      "files": [
+        "components/evil-buttons/reaction-button.tsx"
+      ]
+    },
+    {
+      "name": "download-button",
+      "type": "registry:ui",
+      "title": "DownloadButton",
+      "description": "A download/export button with animated progress, completion, and error feedback.",
+      "files": [
+        "components/evil-buttons/download-button.tsx"
+      ]
+    },
+    {
+      "name": "peek-button",
+      "type": "registry:ui",
+      "title": "PeekButton",
+      "description": "A compact button that reveals small contextual detail on hover or focus.",
+      "files": [
+        "components/evil-buttons/peek-button.tsx"
+      ]
+    },
+    {
+      "name": "scramble-button",
+      "type": "registry:ui",
+      "title": "ScrambleButton",
+      "description": "A button that cycles its label through random characters before revealing the final text — like a cypher decoding itself.",
+      "files": [
+        "components/evil-buttons/scramble-button.tsx"
+      ]
+    },
+    {
+      "name": "breathe-button",
+      "type": "registry:ui",
+      "title": "BreatheButton",
+      "description": "A living button with a slow breathing pulse animation that makes the UI feel organic and calm.",
+      "files": [
+        "components/evil-buttons/breathe-button.tsx"
+      ]
+    },
+    {
+      "name": "gravity-button",
+      "type": "registry:ui",
+      "title": "GravityButton",
+      "description": "A playful button with floating particles that follow your cursor like they're affected by gravity, bursting on click.",
+      "files": [
+        "components/evil-buttons/gravity-button.tsx"
+      ]
+    },
+    {
+      "name": "flux-button",
+      "type": "registry:ui",
+      "title": "FluxButton",
+      "description": "A button with a flowing animated color field — colors drift across the surface like a lava lamp or aurora.",
+      "files": [
+        "components/evil-buttons/flux-button.tsx"
+      ]
     }
   ]
 }

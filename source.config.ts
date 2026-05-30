@@ -8,6 +8,7 @@ export const docs = defineDocs({
   docs: {
     schema: pageSchema.extend({
       image: z.string().optional(),
+      badge: z.string().optional(),
       links: z
         .object({
           github: z.string().url().optional(),

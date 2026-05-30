@@ -1,0 +1,54 @@
+---
+title: ReactionButton
+description: A reaction button with count animation, pressed state, and a small particle burst.
+badge: New
+---
+
+ReactionButton fits likes, boosts, saves, stars, and acknowledgements. It can manage its own reacted state and count, or be controlled from app state.
+
+## Preview
+
+<PreviewCard title="ReactionButton" note="Click to boost">
+  <ReactionButtonDemo />
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/reaction-button</Cmd>
+
+## Usage
+
+```tsx
+import { ReactionButton } from "@/components/evil-buttons/reaction-button";
+
+export function BoostButton() {
+  return (
+    <ReactionButton
+      defaultCount={128}
+      label="Boost"
+      icon="★"
+      onReactionChange={(reacted, count) => saveReaction(reacted, count)}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `count` | `number` | - | Controlled count. |
+| `defaultCount` | `number` | `24` | Initial unmanaged count. |
+| `reacted` | `boolean` | - | Controlled reacted state. |
+| `defaultReacted` | `boolean` | `false` | Initial unmanaged reacted state. |
+| `label` | `React.ReactNode` | `"Like"` | Button label. |
+| `icon` | `React.ReactNode` | `"♥"` | Icon or symbol. |
+| `onReactionChange` | `(reacted, count) => void` | - | Called when the state toggles. |
+
+All other `<button>` attributes are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/reaction-button.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies.

@@ -1,0 +1,54 @@
+---
+title: ShatterButton
+description: A button that shatters into shards on click, scatters them outward, and reassembles itself.
+badge: New
+---
+
+ShatterButton is pure on-brand drama. On click, the button face splits into a grid of shards that fly outward with randomized trajectories and rotation, then snaps back together a moment later. Tune the chaos with `cols`, `rows`, and `scatterRadius`.
+
+## Preview
+
+<PreviewCard title="ShatterButton" note="Click to shatter">
+  <ShatterButton>Destroy It</ShatterButton>
+</PreviewCard>
+
+### Tighter Grid
+
+<PreviewCard title="Heavier shards" note="Click to shatter">
+  <ShatterButton cols={3} rows={2} scatterRadius={120}>
+    Smash
+  </ShatterButton>
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/shatter-button</Cmd>
+
+## Usage
+
+```tsx
+import { ShatterButton } from "@/components/evil-buttons/shatter-button";
+
+export function ButtonDemo() {
+  return <ShatterButton onClick={() => deleteAccount()}>Detonate</ShatterButton>;
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `cols` | `number` | `5` | Shard grid columns. Higher = finer shatter. |
+| `rows` | `number` | `3` | Shard grid rows. |
+| `scatterRadius` | `number` | `160` | How far shards fly outward (px). |
+| `rebuildAfter` | `number` | `900` | Milliseconds before the button reassembles. |
+| `className` | `string` | – | Extra classes passed to the button. |
+| `children` | `React.ReactNode` | – | The visible button label. |
+
+All other `<button>` attributes (`onClick`, `disabled`, `type`, etc.) are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/shatter-button.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies. The component imports `cn` from `@/lib/utils`.

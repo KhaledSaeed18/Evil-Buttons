@@ -5,6 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --animate-flux: flux 3s linear infinite;
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
   --color-background: var(--background);
@@ -126,6 +127,18 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+@keyframes flux {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 

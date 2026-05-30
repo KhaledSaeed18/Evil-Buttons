@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 type DocsNavPage = {
   title: string;
   url: string;
+  badge?: string;
 };
 
 type DocsSidebarProps = {
@@ -56,14 +57,19 @@ function DocsNavGroup({
                 : undefined
             }
             className={cn(
-              "block rounded px-2 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+              "flex items-center justify-between gap-2 rounded px-2 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
               isPageActive(pathname, page.url) ||
                 (pathname === "/docs" && page.url === defaultPageUrl)
                 ? "bg-muted text-foreground"
                 : "text-muted-foreground hover:text-foreground",
             )}
           >
-            {page.title}
+            <span className="truncate">{page.title}</span>
+            {page.badge ? (
+              <span className="inline-flex shrink-0 items-center rounded-sm border border-emerald-500/40 bg-emerald-500/10 px-1.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                {page.badge}
+              </span>
+            ) : null}
           </Link>
         ))}
       </nav>

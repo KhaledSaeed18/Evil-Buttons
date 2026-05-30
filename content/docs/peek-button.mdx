@@ -1,0 +1,43 @@
+---
+title: PeekButton
+description: A compact button that reveals small contextual detail on hover or focus.
+badge: New
+---
+
+PeekButton is useful for actions that need a tiny bit of context without opening a menu: queue counts, last sync time, permission scope, or destination.
+
+## Preview
+
+<PreviewCard title="PeekButton" note="Hover or focus">
+  <PeekButtonDemo />
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/peek-button</Cmd>
+
+## Usage
+
+```tsx
+import { PeekButton } from "@/components/evil-buttons/peek-button";
+
+export function QueueButton() {
+  return <PeekButton peek="12 pending reviews">Open queue</PeekButton>;
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `peek` | `React.ReactNode` | `"Last updated 2m ago"` | Context shown on hover or focus. |
+| `side` | `"top" \| "bottom"` | `"top"` | Where the peek bubble appears. |
+| `children` | `React.ReactNode` | `"Inspect"` | Button label. |
+
+All other `<button>` attributes are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/peek-button.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies.

@@ -1,0 +1,57 @@
+---
+title: DownloadButton
+description: A download/export button with animated progress, completion, and error feedback.
+badge: New
+---
+
+DownloadButton is for export, report, and asset download flows. It can manage its own progress while a promise runs, or accept controlled `state` and `progress` values.
+
+## Preview
+
+<PreviewCard title="DownloadButton" note="Click to export">
+  <DownloadButtonDemo />
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/download-button</Cmd>
+
+## Usage
+
+```tsx
+import { DownloadButton } from "@/components/evil-buttons/download-button";
+
+export function ExportPdfButton() {
+  return (
+    <DownloadButton
+      idleLabel="Export PDF"
+      downloadingLabel="Exporting"
+      completeLabel="Ready"
+      onClick={async () => {
+        await exportPdf();
+      }}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `state` | `"idle" \| "downloading" \| "complete" \| "error"` | - | Optional controlled state. |
+| `progress` | `number` | internal | Optional controlled progress from `0` to `100`. |
+| `onClick` | `(e) => void \| Promise<unknown>` | - | Click handler. Promises drive unmanaged state. |
+| `idleLabel` | `React.ReactNode` | `"Download"` | Initial label. |
+| `downloadingLabel` | `React.ReactNode` | `"Downloading"` | Label while active. |
+| `completeLabel` | `React.ReactNode` | `"Downloaded"` | Label after success. |
+| `errorLabel` | `React.ReactNode` | `"Failed"` | Label after failure. |
+| `resetAfter` | `number` | `1600` | Milliseconds before unmanaged reset. |
+
+All other `<button>` attributes are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/download-button.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies.

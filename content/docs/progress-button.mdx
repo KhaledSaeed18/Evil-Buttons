@@ -1,0 +1,54 @@
+---
+title: ProgressButton
+description: A button that displays real task progress with idle, running, complete, and error states.
+badge: New
+---
+
+ProgressButton is for uploads, exports, imports, syncs, and generated files where a spinner is too vague. Pass a progress value from `0` to `100` and the button renders a fill layer behind the label.
+
+## Preview
+
+<PreviewCard title="ProgressButton" note="Click to run">
+  <ProgressButtonDemo />
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/progress-button</Cmd>
+
+## Usage
+
+```tsx
+import { ProgressButton } from "@/components/evil-buttons/progress-button";
+
+export function ExportButton({ progress }: { progress: number }) {
+  return (
+    <ProgressButton
+      progress={progress}
+      idleLabel="Export"
+      runningLabel="Exporting"
+      completeLabel="Exported"
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `progress` | `number` | `0` | Progress from `0` to `100`. |
+| `status` | `"idle" \| "running" \| "complete" \| "error"` | derived | Explicit visual state. |
+| `idleLabel` | `React.ReactNode` | `"Export"` | Initial label. |
+| `runningLabel` | `React.ReactNode` | `"Exporting"` | Label while running. |
+| `completeLabel` | `React.ReactNode` | `"Complete"` | Label after completion. |
+| `errorLabel` | `React.ReactNode` | `"Failed"` | Label on error. |
+| `showPercent` | `boolean` | `true` | Shows the numeric progress while running. |
+
+All other `<button>` attributes are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/progress-button.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies.

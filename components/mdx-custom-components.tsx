@@ -17,6 +17,55 @@ import { BrutalButton } from "./evil-buttons/brutal-button";
 import { AquaButton } from "./evil-buttons/aqua-button";
 import { FrameButton } from "./evil-buttons/frame-button";
 import { HighlightButton } from "./evil-buttons/highlight-button";
+import { CopyButton } from "./evil-buttons/copy-button";
+import { LoadingButton } from "./evil-buttons/loading-button";
+import { HoldToConfirmButton } from "./evil-buttons/hold-to-confirm";
+import { CountdownButton } from "./evil-buttons/countdown-button";
+import { SwipeToConfirmButton } from "./evil-buttons/swipe-to-confirm";
+import { ShatterButton } from "./evil-buttons/shatter-button";
+import { UndoButton } from "./evil-buttons/undo-button";
+import { TwoStepButton } from "./evil-buttons/two-step-button";
+import { ProgressButton } from "./evil-buttons/progress-button";
+import { CommandButton } from "./evil-buttons/command-button";
+import { RevealButton } from "./evil-buttons/reveal-button";
+import { RateLimitButton } from "./evil-buttons/rate-limit-button";
+import { SmartPasteButton } from "./evil-buttons/smart-paste-button";
+import { SplitActionButton } from "./evil-buttons/split-action-button";
+import { CheckoutButton } from "./evil-buttons/checkout-button";
+import { ReactionButton } from "./evil-buttons/reaction-button";
+import { DownloadButton } from "./evil-buttons/download-button";
+import { PeekButton } from "./evil-buttons/peek-button";
+import { ScrambleButton } from "./evil-buttons/scramble-button";
+import { BreatheButton } from "./evil-buttons/breathe-button";
+import { GravityButton } from "./evil-buttons/gravity-button";
+import { FluxButton } from "./evil-buttons/flux-button";
+import {
+  LoadingButtonSuccessDemo,
+  LoadingButtonFailureDemo,
+  HoldToConfirmDemo,
+  HoldToConfirmPublishDemo,
+  CountdownCustomFormatDemo,
+  ProgressButtonDemo,
+  CommandButtonDemo,
+  UndoButtonDemo,
+  TwoStepButtonDemo,
+  TwoStepButtonDestructiveDemo,
+  RateLimitButtonDemo,
+  SmartPasteButtonDemo,
+  SplitActionButtonDemo,
+  CheckoutButtonDemo,
+  CheckoutButtonFailureDemo,
+  ReactionButtonDemo,
+  DownloadButtonDemo,
+  PeekButtonDemo,
+  ScrambleButtonDemo,
+  ScrambleButtonCustomDemo,
+  BreatheButtonDemo,
+  BreatheButtonSlowDemo,
+  GravityButtonDemo,
+  FluxButtonDemo,
+  FluxButtonCustomDemo,
+} from "./evil-buttons-demos";
 
 
 type CmdProps = {
@@ -98,5 +147,52 @@ export function getCustomMDXComponents(): MDXComponents {
     AquaButton,
     FrameButton,
     HighlightButton,
+    CopyButton,
+    LoadingButton,
+    HoldToConfirmButton,
+    CountdownButton,
+    SwipeToConfirmButton,
+    ShatterButton,
+    UndoButton,
+    TwoStepButton,
+    ProgressButton,
+    CommandButton,
+    RevealButton,
+    RateLimitButton,
+    SmartPasteButton,
+    SplitActionButton,
+    CheckoutButton,
+    ReactionButton,
+    DownloadButton,
+    PeekButton,
+    ScrambleButton,
+    BreatheButton,
+    GravityButton,
+    FluxButton,
+    LoadingButtonSuccessDemo,
+    LoadingButtonFailureDemo,
+    HoldToConfirmDemo,
+    HoldToConfirmPublishDemo,
+    CountdownCustomFormatDemo,
+    ProgressButtonDemo,
+    CommandButtonDemo,
+    UndoButtonDemo,
+    TwoStepButtonDemo,
+    TwoStepButtonDestructiveDemo,
+    RateLimitButtonDemo,
+    SmartPasteButtonDemo,
+    SplitActionButtonDemo,
+    CheckoutButtonDemo,
+    CheckoutButtonFailureDemo,
+    ReactionButtonDemo,
+    DownloadButtonDemo,
+    PeekButtonDemo,
+    ScrambleButtonDemo,
+    ScrambleButtonCustomDemo,
+    BreatheButtonDemo,
+    BreatheButtonSlowDemo,
+    GravityButtonDemo,
+    FluxButtonDemo,
+    FluxButtonCustomDemo,
   };
 }

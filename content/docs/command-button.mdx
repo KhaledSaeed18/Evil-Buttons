@@ -1,0 +1,48 @@
+---
+title: CommandButton
+description: A keyboard-shortcut button that visually presses itself when its shortcut is used.
+badge: New
+---
+
+CommandButton is useful for command palettes, dashboards, editors, and dev tools. It shows a shortcut hint and runs `onCommand` when the shortcut is pressed.
+
+## Preview
+
+<PreviewCard title="CommandButton" note="Press command K">
+  <CommandButtonDemo />
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/command-button</Cmd>
+
+## Usage
+
+```tsx
+import { CommandButton } from "@/components/evil-buttons/command-button";
+
+export function SaveButton() {
+  return (
+    <CommandButton shortcut="mod+s" onCommand={() => save()}>
+      Save
+    </CommandButton>
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `shortcut` | `string` | `"mod+s"` | Shortcut tokens joined by `+`, e.g. `mod+k` or `shift+?`. |
+| `onCommand` | `() => void` | - | Called when the shortcut is pressed. |
+| `preventDefault` | `boolean` | `true` | Prevents the browser default for the shortcut. |
+| `showShortcut` | `boolean` | `true` | Shows the shortcut badge. |
+
+All other `<button>` attributes are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/command-button.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies.

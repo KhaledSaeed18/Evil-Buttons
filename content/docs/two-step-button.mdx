@@ -1,0 +1,62 @@
+---
+title: TwoStepButton
+description: A click-once-to-arm, click-again-to-confirm button for risky actions.
+badge: New
+---
+
+TwoStepButton is a compact confirmation pattern for actions that need intent but do not deserve a modal. The first click arms the button for a short time; the second click confirms.
+
+## Preview
+
+<PreviewCard title="TwoStepButton" note="Two clicks">
+  <TwoStepButtonDemo />
+</PreviewCard>
+
+## Destructive
+
+<PreviewCard title="Destructive" note="Armed state">
+  <TwoStepButtonDestructiveDemo />
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/two-step-button</Cmd>
+
+## Usage
+
+```tsx
+import { TwoStepButton } from "@/components/evil-buttons/two-step-button";
+
+export function DeployButton() {
+  return (
+    <TwoStepButton
+      idleLabel="Deploy"
+      armedLabel="Click again to deploy"
+      confirmedLabel="Deployed"
+      armDuration={2600}
+      onConfirm={() => deploy()}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `onConfirm` | `() => void` | - | Called on the second click. |
+| `onArm` | `() => void` | - | Called on the first click. |
+| `idleLabel` | `React.ReactNode` | `"Deploy"` | Initial label. |
+| `armedLabel` | `React.ReactNode` | `"Click again"` | Label while armed. |
+| `confirmedLabel` | `React.ReactNode` | `"Confirmed"` | Label after confirmation. |
+| `armDuration` | `number` | `2600` | Milliseconds before the armed state resets. |
+| `resetAfter` | `number` | `1200` | Milliseconds before resetting after confirmation. |
+| `destructive` | `boolean` | `false` | Uses a destructive color treatment. |
+
+All other `<button>` attributes are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/two-step-button.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies.

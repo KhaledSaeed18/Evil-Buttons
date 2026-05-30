@@ -1,0 +1,59 @@
+---
+title: ScrambleButton
+description: A button that cycles its label through random characters before revealing the final text — like a cypher decoding itself.
+---
+
+ScrambleButton is built for generate, decrypt, roll, or randomize actions. Text scrambles through a configurable character set with an eased reveal, giving a satisfying sci-fi/cyberpunk feel.
+
+## Preview
+
+<PreviewCard title="ScrambleButton" note="Hover or click to scramble">
+  <ScrambleButtonDemo />
+</PreviewCard>
+
+### Custom character set
+
+<PreviewCard title="Custom scramble chars" note="Hover or click to scramble">
+  <ScrambleButtonCustomDemo />
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/scramble-button</Cmd>
+
+## Usage
+
+```tsx
+import { ScrambleButton } from "@/components/evil-buttons/scramble-button";
+
+export function GenerateButton() {
+  return (
+    <ScrambleButton
+      idleLabel="Generate Password"
+      scrambledLabel="p@ssw0rd!x9"
+      duration={700}
+      onClick={async () => {
+        // trigger generation
+      }}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `idleLabel` | `React.ReactNode` | `"Generate"` | Label before scrambling. |
+| `scrambledLabel` | `React.ReactNode` | `idleLabel` | Label revealed after scramble completes. |
+| `scrambleChars` | `string` | alphanumeric + symbols | Characters used during the scramble animation. |
+| `duration` | `number` | `700` | Duration of the scramble animation (ms). |
+| `onClick` | `(e) => void` | - | Click handler. Clicking while revealed resets. |
+
+All other `<button>` attributes are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/scramble-button.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies.

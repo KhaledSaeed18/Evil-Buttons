@@ -1,0 +1,66 @@
+---
+title: CopyButton
+description: A click-to-copy button with an animated clipboard → check icon morph and aria-live feedback.
+badge: New
+---
+
+CopyButton wraps the Clipboard API in a tactile, animated button. The icon morphs from a clipboard to a check (or a cross on failure), and the label swaps with a spring transition. It exposes `onCopy` for downstream toasts/analytics and resets itself after `timeout`.
+
+## Preview
+
+<PreviewCard title="CopyButton" note="Interactive">
+  <CopyButton value="npx shadcn@latest add @evilbuttons/copy-button" />
+</PreviewCard>
+
+### Custom Labels
+
+<PreviewCard title="Custom Labels" note="Interactive">
+  <div className="flex gap-3">
+    <CopyButton value="user@evilbuttons.dev" copyLabel="Email" copiedLabel="Copied!" />
+    <CopyButton value="0xDEADBEEF" copyLabel="Hash" copiedLabel="Got it" timeout={2500} />
+  </div>
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/copy-button</Cmd>
+
+## Usage
+
+```tsx
+import { CopyButton } from "@/components/evil-buttons/copy-button";
+
+export function ButtonDemo() {
+  return <CopyButton value="hello world" />;
+}
+
+export function WithCallback() {
+  return (
+    <CopyButton
+      value="API_KEY_123"
+      copyLabel="Copy key"
+      copiedLabel="Copied"
+      onCopy={(v) => console.log("copied", v)}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `value` | `string` | – | The string written to the clipboard. |
+| `timeout` | `number` | `1500` | How long the "copied" state stays visible, in milliseconds. |
+| `copyLabel` | `React.ReactNode` | `"Copy"` | Label shown in the idle state. |
+| `copiedLabel` | `React.ReactNode` | `"Copied"` | Label shown after a successful copy. |
+| `onCopy` | `(value: string) => void` | – | Fired after a successful copy. |
+| `className` | `string` | – | Extra classes passed to the button. |
+
+All other `<button>` attributes (`onClick`, `disabled`, `type`, etc.) are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/copy-button.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies. The component imports `cn` from `@/lib/utils`.

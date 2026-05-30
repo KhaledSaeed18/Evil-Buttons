@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "peek-button",
+  "type": "registry:ui",
+  "title": "PeekButton",
+  "description": "A compact button that reveals small contextual detail on hover or focus.",
+  "files": [
+    {
+      "path": "components/evil-buttons/peek-button.tsx",
+      "type": "registry:ui",
+      "target": "components/evil-buttons/peek-button.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { AnimatePresence, motion } from \"motion/react\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface PeekButtonProps\n  extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  peek?: React.ReactNode;\n  side?: \"top\" | \"bottom\";\n}\n\nexport const PeekButton = React.forwardRef<HTMLButtonElement, PeekButtonProps>(\n  (\n    {\n      children = \"Inspect\",\n      peek = \"Last updated 2m ago\",\n      side = \"top\",\n      className,\n      type = \"button\",\n      ...props\n    },\n    ref,\n  ) => {\n    const [open, setOpen] = React.useState(false);\n\n    return (\n      <button\n        ref={ref}\n        type={type}\n        onPointerEnter={() => setOpen(true)}\n        onPointerLeave={() => setOpen(false)}\n        onFocus={() => setOpen(true)}\n        onBlur={() => setOpen(false)}\n        data-state={open ? \"open\" : \"closed\"}\n        className={cn(\n          \"group relative inline-flex min-w-36 items-center justify-center rounded-md border border-border bg-background px-4 py-2.5 text-sm font-semibold text-foreground shadow-sm transition-colors\",\n          \"hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-60\",\n          className,\n        )}\n        {...props}\n      >\n        <AnimatePresence>\n          {open ? (\n            <motion.span\n              role=\"status\"\n              initial={{ opacity: 0, y: side === \"top\" ? 6 : -6, scale: 0.96 }}\n              animate={{ opacity: 1, y: 0, scale: 1 }}\n              exit={{ opacity: 0, y: side === \"top\" ? 6 : -6, scale: 0.96 }}\n              transition={{ duration: 0.16 }}\n              className={cn(\n                \"pointer-events-none absolute z-20 max-w-56 whitespace-nowrap rounded-md border border-border bg-foreground px-3 py-1.5 text-xs font-medium text-background shadow-lg\",\n                side === \"top\" ? \"bottom-full mb-2\" : \"top-full mt-2\",\n              )}\n            >\n              {peek}\n            </motion.span>\n          ) : null}\n        </AnimatePresence>\n        <span className=\"relative z-10 inline-flex items-center gap-2\">\n          <span>{children}</span>\n          <motion.span\n            aria-hidden\n            animate={{ x: open ? 2 : 0 }}\n            transition={{ duration: 0.16 }}\n          >\n            →\n          </motion.span>\n        </span>\n      </button>\n    );\n  },\n);\n\nPeekButton.displayName = \"PeekButton\";\n"
+    }
+  ],
+  "dependencies": [
+    "motion",
+    "clsx",
+    "tailwind-merge"
+  ]
+}

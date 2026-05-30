@@ -1,0 +1,52 @@
+---
+title: BreatheButton
+description: A living button with a slow breathing pulse animation that makes the UI feel organic and calm.
+---
+
+BreatheButton adds a subtle, meditative pulse to your interface. The button slowly scales in and out like a breath, with a glowing overlay that fades in rhythm. On hover it perks up, and on click it responds with a quick heartbeat.
+
+## Preview
+
+<PreviewCard title="BreatheButton" note="Watch it breathe">
+  <BreatheButtonDemo />
+</PreviewCard>
+
+### Slower, deeper breath
+
+<PreviewCard title="Slow BreatheButton" note="6-second cycle">
+  <BreatheButtonSlowDemo />
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/breathe-button</Cmd>
+
+## Usage
+
+```tsx
+import { BreatheButton } from "@/components/evil-buttons/breathe-button";
+
+export function MeditateButton() {
+  return (
+    <BreatheButton speed={4000} amplitude={1.03}>
+      Pause
+    </BreatheButton>
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `speed` | `number` | `3600` | Duration of one full breathe cycle (ms). |
+| `amplitude` | `number` | `1.025` | How much the button scales during inhale. |
+| `children` | `React.ReactNode` | `"Breathe"` | Button label. |
+
+All other `<button>` attributes are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/breathe-button.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies.

@@ -1,0 +1,62 @@
+---
+title: SwipeToConfirmButton
+description: An iOS-style swipe-to-confirm slider — drag the handle across to commit, release early to cancel.
+badge: New
+---
+
+SwipeToConfirmButton is the touch-friendly cousin of `HoldToConfirmButton`. The user drags a circular handle from left to right; cross the threshold and it locks in with a spring, release early and it snaps back. Great for payment confirmation, mobile destructive actions, and anywhere a single tap feels too dangerous.
+
+## Preview
+
+<PreviewCard title="SwipeToConfirm" note="Drag the handle">
+  <SwipeToConfirmButton idleLabel="Swipe to pay" confirmedLabel="Paid" />
+</PreviewCard>
+
+### Destructive
+
+<PreviewCard title="Destructive" note="Drag the handle">
+  <SwipeToConfirmButton
+    destructive
+    idleLabel="Swipe to delete"
+    confirmedLabel="Deleted"
+    width={320}
+  />
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/swipe-to-confirm</Cmd>
+
+## Usage
+
+```tsx
+import { SwipeToConfirmButton } from "@/components/evil-buttons/swipe-to-confirm";
+
+export function Pay() {
+  return (
+    <SwipeToConfirmButton
+      idleLabel="Swipe to pay $49"
+      confirmedLabel="Charged"
+      onConfirm={() => chargeCard()}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `onConfirm` | `() => void` | – | Called once when the handle crosses the threshold. |
+| `idleLabel` | `React.ReactNode` | `"Swipe to confirm"` | Label shown behind the handle while idle. |
+| `confirmedLabel` | `React.ReactNode` | `"Confirmed"` | Label shown after confirmation. |
+| `threshold` | `number` | `0.85` | Fraction of the track (0–1) the handle must cross to confirm. |
+| `width` | `number \| string` | `280` | Track width. |
+| `destructive` | `boolean` | `false` | Use the red destructive palette. |
+| `className` | `string` | – | Extra classes passed to the track. |
+
+## Registry
+
+The registry item includes `components/evil-buttons/swipe-to-confirm.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies. The component imports `cn` from `@/lib/utils`.

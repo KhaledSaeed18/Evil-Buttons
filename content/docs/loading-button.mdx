@@ -1,0 +1,87 @@
+---
+title: LoadingButton
+description: A stateful submit button that animates through idle, loading, success, and error states.
+badge: New
+---
+
+LoadingButton automatically drives itself when `onClick` returns a promise: it switches to the loading state, waits for resolution, and shows success or error. You can also drive the state externally by passing `state` as a prop for full control (e.g. from a form library).
+
+## Preview
+
+<PreviewCard title="LoadingButton" note="Click to submit">
+  <LoadingButtonSuccessDemo />
+</PreviewCard>
+
+### Failure Path
+
+<PreviewCard title="Failure" note="Will reject">
+  <LoadingButtonFailureDemo />
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/loading-button</Cmd>
+
+## Usage
+
+### Async onClick (uncontrolled)
+
+```tsx
+import { LoadingButton } from "@/components/evil-buttons/loading-button";
+
+export function SaveButton() {
+  return (
+    <LoadingButton
+      idleLabel="Save"
+      pendingLabel="Saving..."
+      successLabel="Saved"
+      errorLabel="Failed"
+      onClick={async () => {
+        await fetch("/api/save", { method: "POST" });
+      }}
+    />
+  );
+}
+```
+
+### Controlled state
+
+```tsx
+import { LoadingButton, type LoadingButtonState } from "@/components/evil-buttons/loading-button";
+import { useState } from "react";
+
+export function ControlledButton() {
+  const [state, setState] = useState<LoadingButtonState>("idle");
+  return (
+    <LoadingButton
+      state={state}
+      idleLabel="Publish"
+      onClick={() => {
+        setState("loading");
+        setTimeout(() => setState("success"), 1200);
+      }}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `state` | `"idle" \| "loading" \| "success" \| "error"` | – | Controlled state. Omit to let the button drive itself from a promise. |
+| `onClick` | `(e) => void \| Promise<unknown>` | – | Click handler. If it returns a promise, the button auto-manages state. |
+| `idleLabel` | `React.ReactNode` | `"Submit"` | Label in the idle state. |
+| `pendingLabel` | `React.ReactNode` | `"Working..."` | Label while loading. |
+| `successLabel` | `React.ReactNode` | `"Done"` | Label after success. |
+| `errorLabel` | `React.ReactNode` | `"Failed"` | Label after error. |
+| `resetAfter` | `number` | `1800` | Milliseconds before auto-resetting from success/error back to idle. Uncontrolled only. |
+| `className` | `string` | – | Extra classes passed to the button. |
+
+All other `<button>` attributes are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/loading-button.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies. The component imports `cn` from `@/lib/utils`.

@@ -1,0 +1,55 @@
+---
+title: SmartPasteButton
+description: A clipboard-aware paste button that validates pasted content and reports success or failure.
+badge: New
+---
+
+SmartPasteButton is built for token fields, invite codes, JSON imports, recovery codes, and developer tools. It reads the clipboard, optionally transforms the text, validates it, and shows a clear state transition.
+
+## Preview
+
+<PreviewCard title="SmartPasteButton" note="Paste sk_ token">
+  <SmartPasteButtonDemo />
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/smart-paste-button</Cmd>
+
+## Usage
+
+```tsx
+import { SmartPasteButton } from "@/components/evil-buttons/smart-paste-button";
+
+export function PasteTokenButton() {
+  return (
+    <SmartPasteButton
+      idleLabel="Paste token"
+      validate={(value) => /^sk_[a-z0-9_-]{8,}$/i.test(value)}
+      onPaste={(value) => setToken(value)}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `validate` | `(value: string) => boolean` | non-empty text | Accepts or rejects clipboard text. |
+| `transform` | `(value: string) => string` | `trim` | Normalizes clipboard text before validation. |
+| `onPaste` | `(value: string) => void` | - | Called with valid transformed text. |
+| `idleLabel` | `React.ReactNode` | `"Paste"` | Initial label. |
+| `readingLabel` | `React.ReactNode` | `"Reading"` | Label while reading the clipboard. |
+| `validLabel` | `React.ReactNode` | `"Accepted"` | Label after valid paste. |
+| `invalidLabel` | `React.ReactNode` | `"Invalid"` | Label after validation fails. |
+| `errorLabel` | `React.ReactNode` | `"No access"` | Label when Clipboard API access fails. |
+| `resetAfter` | `number` | `1600` | Milliseconds before returning to idle. |
+
+All other `<button>` attributes are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/smart-paste-button.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies.

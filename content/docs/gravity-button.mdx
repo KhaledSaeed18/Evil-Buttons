@@ -1,0 +1,45 @@
+---
+title: GravityButton
+description: A playful button with floating particles inside that follow your cursor like they're affected by gravity.
+---
+
+GravityButton hides tiny colored particles inside the button surface. They drift toward your cursor with spring physics when you move the mouse, and burst outward in an explosion on click. The particles settle and continue following after the burst.
+
+## Preview
+
+<PreviewCard title="GravityButton" note="Move your mouse inside">
+  <GravityButtonDemo />
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/gravity-button</Cmd>
+
+## Usage
+
+```tsx
+import { GravityButton } from "@/components/evil-buttons/gravity-button";
+
+export function FunButton() {
+  return (
+    <GravityButton particleCount={8} onClick={() => console.log("boop")}>
+      Boop me
+    </GravityButton>
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `particleCount` | `number` | `6` | Number of floating particles inside the button. |
+| `children` | `React.ReactNode` | `"Click me"` | Button label. |
+
+All other `<button>` attributes are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/gravity-button.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies.

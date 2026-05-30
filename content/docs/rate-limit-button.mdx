@@ -1,0 +1,57 @@
+---
+title: RateLimitButton
+description: A quota-aware action button with remaining-use pips and automatic cooldown refill.
+badge: New
+---
+
+RateLimitButton is useful for resend, regenerate, invite, export, and AI actions where users get a small burst of attempts before a cooldown. It shows remaining uses as pips, disables itself during cooldown, then refills automatically.
+
+## Preview
+
+<PreviewCard title="RateLimitButton" note="Use all 3">
+  <RateLimitButtonDemo />
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/rate-limit-button</Cmd>
+
+## Usage
+
+```tsx
+import { RateLimitButton } from "@/components/evil-buttons/rate-limit-button";
+
+export function GenerateButton() {
+  return (
+    <RateLimitButton
+      maxUses={3}
+      cooldownSeconds={30}
+      idleLabel="Generate"
+      cooldownLabel="Quota reset"
+      onTrigger={(event, usesLeft) => regenerate(usesLeft)}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `maxUses` | `number` | `3` | Number of uses available before cooldown. |
+| `cooldownSeconds` | `number` | `12` | Cooldown duration after the last use. |
+| `idleLabel` | `React.ReactNode` | `"Generate"` | Label while uses remain. |
+| `cooldownLabel` | `React.ReactNode` | `"Cooling down"` | Label during cooldown. |
+| `readyLabel` | `React.ReactNode` | `"Refilled"` | Brief label after cooldown completes. |
+| `showUses` | `boolean` | `true` | Shows remaining-use pips. |
+| `formatCooldown` | `(seconds) => React.ReactNode` | `m:ss` | Custom cooldown text. |
+| `onTrigger` | `(e, usesLeft) => void \| Promise<unknown>` | - | Called when a use is consumed. |
+| `onRefresh` | `() => void` | - | Called when the quota refills. |
+
+All other `<button>` attributes are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/rate-limit-button.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies.

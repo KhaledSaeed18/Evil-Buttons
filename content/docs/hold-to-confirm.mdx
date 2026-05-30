@@ -1,0 +1,62 @@
+---
+title: HoldToConfirmButton
+description: Require the user to hold-press a button for N milliseconds before firing the action.
+badge: New
+---
+
+HoldToConfirmButton is the "are you sure?" gate without a modal. The fill animates from left to right while the user holds; release early and it cancels with a snap. Reach for it on destructive actions like deleting a project or revoking a key.
+
+## Preview
+
+<PreviewCard title="HoldToConfirm" note="Press and hold">
+  <HoldToConfirmDemo />
+</PreviewCard>
+
+### Non-destructive variant
+
+<PreviewCard title="Confirm" note="Press and hold">
+  <HoldToConfirmPublishDemo />
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/hold-to-confirm</Cmd>
+
+## Usage
+
+```tsx
+import { HoldToConfirmButton } from "@/components/evil-buttons/hold-to-confirm";
+
+export function DangerZone() {
+  return (
+    <HoldToConfirmButton
+      holdDuration={1500}
+      idleLabel="Hold to delete project"
+      confirmedLabel="Deleting"
+      onConfirm={() => deleteProject()}
+    />
+  );
+}
+```
+
+Keyboard users can hold `Space` or `Enter` to confirm; releasing the key cancels.
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `holdDuration` | `number` | `1400` | How long the user must hold before `onConfirm` fires, in milliseconds. |
+| `onConfirm` | `() => void` | – | Called once when the hold completes. |
+| `idleLabel` | `React.ReactNode` | `"Hold to confirm"` | Label before holding. |
+| `holdingLabel` | `React.ReactNode` | `"Hold..."` | Label while the fill is animating. |
+| `confirmedLabel` | `React.ReactNode` | `"Confirmed"` | Label after the confirm fires. |
+| `destructive` | `boolean` | `true` | Use the red destructive palette. Set `false` for neutral confirmation. |
+| `className` | `string` | – | Extra classes passed to the button. |
+
+All other `<button>` attributes are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/hold-to-confirm.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies. The component imports `cn` from `@/lib/utils`.

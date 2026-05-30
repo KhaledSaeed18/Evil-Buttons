@@ -1,0 +1,62 @@
+---
+title: CheckoutButton
+description: A payment-style button that animates through processing, approved, and declined states.
+badge: New
+---
+
+CheckoutButton gives payment, subscription, and checkout flows a compact staged interaction. It can manage itself from a promise-returning click handler or be controlled externally with `state`.
+
+## Preview
+
+<PreviewCard title="CheckoutButton" note="Success path">
+  <CheckoutButtonDemo />
+</PreviewCard>
+
+## Declined
+
+<PreviewCard title="Declined" note="Will reject">
+  <CheckoutButtonFailureDemo />
+</PreviewCard>
+
+## Install
+
+Add the item with the shadcn CLI.
+
+<Cmd>@evilbuttons/checkout-button</Cmd>
+
+## Usage
+
+```tsx
+import { CheckoutButton } from "@/components/evil-buttons/checkout-button";
+
+export function PayButton() {
+  return (
+    <CheckoutButton
+      amount="$24"
+      idleLabel="Pay"
+      onClick={async () => {
+        await chargeCard();
+      }}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `state` | `"idle" \| "processing" \| "approved" \| "declined"` | - | Optional controlled state. |
+| `onClick` | `(e) => void \| Promise<unknown>` | - | Click handler. Promises drive unmanaged success/error states. |
+| `amount` | `React.ReactNode` | `"$24"` | Amount badge. |
+| `idleLabel` | `React.ReactNode` | `"Pay"` | Initial label. |
+| `processingLabel` | `React.ReactNode` | `"Processing"` | Label while pending. |
+| `approvedLabel` | `React.ReactNode` | `"Approved"` | Label after success. |
+| `declinedLabel` | `React.ReactNode` | `"Declined"` | Label after failure. |
+| `resetAfter` | `number` | `1800` | Milliseconds before unmanaged reset. |
+
+All other `<button>` attributes are forwarded.
+
+## Registry
+
+The registry item includes `components/evil-buttons/checkout-button.tsx` and installs `motion`, `clsx`, and `tailwind-merge` as dependencies.
