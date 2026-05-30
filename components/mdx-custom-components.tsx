@@ -17,7 +17,7 @@ import { BrutalButton } from "./evil-buttons/brutal-button";
 import { AquaButton } from "./evil-buttons/aqua-button";
 import { FrameButton } from "./evil-buttons/frame-button";
 import { HighlightButton } from "./evil-buttons/highlight-button";
-
+import { GlitchButton } from "./evil-buttons/glitch-button";
 
 type CmdProps = {
   children: ReactNode;
@@ -98,5 +98,6 @@ export function getCustomMDXComponents(): MDXComponents {
     AquaButton,
     FrameButton,
     HighlightButton,
+    GlitchButton,
   };
 }
