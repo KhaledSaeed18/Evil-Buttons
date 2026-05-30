@@ -91,11 +91,11 @@ export function DocsSidebar({
     <>
       <aside
         className={cn(
-          "fixed inset-y-2 left-2 z-2147483647 w-64 shrink-0 overflow-y-auto rounded border border-border bg-background p-2 shadow-xl transition-transform duration-200 ease-out md:static md:inset-auto md:z-auto md:h-full md:translate-x-0 md:border-0 md:bg-transparent md:p-2 md:pr-3 md:shadow-none",
-          open ? "translate-x-0" : "translate-x-[-110%] md:translate-x-0",
+          "fixed inset-y-0 left-0 z-50 w-64 shrink-0 overflow-y-auto border-r border-border bg-background p-3 transition-transform duration-200 ease-out md:static md:z-auto md:h-full md:w-56 md:translate-x-0",
+          open ? "translate-x-0" : "-translate-x-full md:translate-x-0",
         )}
       >
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between px-2 pt-1">
             {brand}
             <button
@@ -107,30 +107,30 @@ export function DocsSidebar({
               <XIcon size={16} />
             </button>
           </div>
-          <div className="flex items-center gap-1.5 px-2">
+          <div className="flex items-center gap-2 px-1">
             <a
               href="https://github.com/radiumcoders/evil-buttons"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors border-border border hover:bg-muted hover:text-foreground"
+              className="inline-flex size-8 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
               aria-label="GitHub"
             >
-              <GithubLogoIcon size={15} />
+              <GithubLogoIcon size={16} />
             </a>
             <a
               href="https://x.com/radiumcoders"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex size-7 items-center justify-center rounded-md text-muted-foreground border-border border transition-colors hover:bg-muted hover:text-foreground"
+              className="inline-flex size-8 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
               aria-label="X (Twitter)"
             >
-              <XLogoIcon size={15} />
+              <XLogoIcon size={16} />
             </a>
             <a
               href="https://github.com/sponsors/radiumcoders"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-md border-border border px-3 py-1.5 text-xs font-medium text-pink-600 transition-colors hover:bg-pink-100 dark:text-pink-400 dark:hover:bg-pink-950/50 duration-75"
+              className="inline-flex items-center gap-1.5 px-2 py-1 text-xs font-medium text-pink-600 transition-colors hover:text-foreground dark:text-pink-400"
             >
               <HeartIcon size={12} />
               Sponsor
@@ -146,17 +146,12 @@ export function DocsSidebar({
       {open ? (
         <button
           type="button"
-          className="fixed inset-0 z-2147483646 bg-black/30 md:hidden"
+          className="fixed inset-0 z-40 bg-black/30 md:hidden"
           onClick={() => setOpen(false)}
           aria-label="Close sidebar"
         />
       ) : null}
-      <div
-        className={cn(
-          "fixed top-4 left-4 z-2147483645 md:hidden",
-          open && "hidden",
-        )}
-      >
+      <div className={cn("fixed top-4 left-4 z-50 md:hidden", open && "hidden")}>
         <button
           type="button"
           className="inline-flex size-8 items-center justify-center rounded border border-border bg-background text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"

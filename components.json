@@ -22,6 +22,7 @@
     "hooks": "@/hooks"
   },
   "registries": {
+    "@evilbuttons": "http://localhost:3000/r/{name}.json",
     "@xcn": "https://ui.radiumcoders.com/r/xcn/{name}.json",
     "@dotmatrix": "https://dotmatrix.zzzzshawn.cloud/r/{name}.json",
     "@react-bits": "https://reactbits.dev/r/{name}.json",

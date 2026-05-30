@@ -27,7 +27,7 @@ export default async function DocsPage({ params }: DocsPageProps) {
   const breadcrumbs = getDocsBreadcrumbs(page.url, page.data.title);
 
   return (
-    <div className="relative mx-auto w-full max-w-6xl px-6 pt-16 pb-8 md:py-8 xl:pr-64">
+    <div className="relative mx-auto w-full max-w-3xl px-6 pb-10 pt-14 md:px-8 md:pt-10 xl:max-w-6xl xl:pr-56">
       <JsonLd
         data={[
           createTechArticleJsonLd({
@@ -38,12 +38,12 @@ export default async function DocsPage({ params }: DocsPageProps) {
           createBreadcrumbJsonLd(breadcrumbs),
         ]}
       />
-      <article className="docs-content mx-auto min-w-0 max-w-3xl">
+      <article className="docs-content min-w-0">
         <MDX components={getMDXComponents()} />
       </article>
-      <aside className="fixed top-10 right-8 hidden w-48 xl:block">
-        <div className="flex max-h-[calc(100dvh-5rem)] flex-col gap-3 overflow-y-auto border-l border-border pl-5">
-          <p className="text-xs font-semibold text-muted-foreground">On This Page</p>
+      <aside className="fixed top-8 right-6 hidden w-44 xl:block">
+        <div className="flex max-h-[calc(100dvh-4rem)] flex-col gap-2 overflow-y-auto pl-4">
+          <p className="text-xs text-muted-foreground">On this page</p>
           <PageToc />
         </div>
       </aside>
