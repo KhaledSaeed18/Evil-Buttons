@@ -115,7 +115,7 @@ export const CommandButton = React.forwardRef<
         />
         <motion.span
           key={`label-${pulse}`}
-          initial={false}
+          initial={{ scale: 1, y: 0 }}
           animate={
             pulse ? { scale: [1, 0.96, 1], y: [0, 1, 0] } : undefined
           }
