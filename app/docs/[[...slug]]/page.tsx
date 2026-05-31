@@ -45,7 +45,10 @@ export default async function DocsPage({ params }: DocsPageProps) {
           createBreadcrumbJsonLd(breadcrumbs),
         ]}
       />
-      <div className="mb-8 flex flex-wrap items-center gap-2">
+      <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+        <h1 className="text-4xl font-semibold tracking-tight text-foreground">
+          {page.data.title}
+        </h1>
         <DocsPageActions
           markdown={markdown}
           githubUrl={`${siteConfig.github}/blob/main/content/docs/${page.path}`}
