@@ -22,6 +22,8 @@ type DocsPageActionsProps = {
   markdownUrl: string;
   /** Absolute Markdown URL handed to external AI tools. */
   markdownAbsoluteUrl: string;
+  /** "Open in v0" deep link. Omitted for pages without a registry item. */
+  v0Url?: string;
 };
 
 type MenuLink = {
@@ -54,6 +56,14 @@ function CursorIcon() {
   );
 }
 
+function V0Icon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className="size-4">
+      <path d="M14.066 6.028v2.22h5.729q.075-.001.148.005l-5.853 5.752a2 2 0 0 1-.024-.309V8.247h-2.353v5.45c0 2.322 1.935 4.222 4.258 4.222h5.675v-2.22h-5.675q-.03 0-.059-.003l5.729-5.629q.006.082.006.166v5.465H24v-5.465a4.204 4.204 0 0 0-4.205-4.205zM0 8.245l8.28 9.266c.839.94 2.396.346 2.396-.914V8.245H8.19v5.44l-4.86-5.44Z" />
+    </svg>
+  );
+}
+
 const ICON_PROPS = { size: 16 } as const;
 
 function buildAiPrompt(url: string): string {
@@ -65,6 +75,7 @@ export function DocsPageActions({
   githubUrl,
   markdownUrl,
   markdownAbsoluteUrl,
+  v0Url,
 }: DocsPageActionsProps) {
   const [copied, setCopied] = useState(false);
   const resetTimerRef = useRef<number | null>(null);
@@ -128,6 +139,15 @@ export function DocsPageActions({
       href: `cursor://anysphere.cursor-deeplink/prompt?text=${prompt}`,
       icon: <CursorIcon />,
     },
+    ...(v0Url
+      ? [
+          {
+            label: "Open in v0",
+            href: v0Url,
+            icon: <V0Icon />,
+          },
+        ]
+      : []),
   ];
 
   return (
