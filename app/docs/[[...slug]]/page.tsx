@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { DocsPageActions } from "@/components/docs-page-actions";
 import { getMDXComponents } from "@/components/mdx";
 import { PageToc } from "@/components/page-toc";
 import { JsonLd } from "@/components/seo/json-ld";
+import { getPageMarkdown } from "@/lib/markdown";
 import { source } from "@/lib/source";
 import {
+  absoluteUrl,
   createBreadcrumbJsonLd,
   createDocsPageMetadata,
   createTechArticleJsonLd,
   getDocsBreadcrumbs,
+  siteConfig,
 } from "@/lib/seo";
 
 type DocsPageProps = {
@@ -26,6 +30,9 @@ export default async function DocsPage({ params }: DocsPageProps) {
   const MDX = page.data.body;
   const breadcrumbs = getDocsBreadcrumbs(page.url, page.data.title);
 
+  const markdown = (await getPageMarkdown(page.slugs)) ?? "";
+  const rawPath = `/raw/${page.slugs.join("/")}`;
+
   return (
     <div className="relative mx-auto w-full max-w-3xl px-6 pb-10 pt-14 md:px-8 md:pt-10 xl:max-w-6xl xl:pr-56">
       <JsonLd
@@ -38,6 +45,14 @@ export default async function DocsPage({ params }: DocsPageProps) {
           createBreadcrumbJsonLd(breadcrumbs),
         ]}
       />
+      <div className="mb-8 flex flex-wrap items-center gap-2">
+        <DocsPageActions
+          markdown={markdown}
+          githubUrl={`${siteConfig.github}/blob/main/content/docs/${page.path}`}
+          markdownUrl={rawPath}
+          markdownAbsoluteUrl={absoluteUrl(rawPath)}
+        />
+      </div>
       <article className="docs-content min-w-0">
         <MDX components={getMDXComponents()} />
       </article>
